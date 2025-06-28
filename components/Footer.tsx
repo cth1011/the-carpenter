@@ -1,8 +1,8 @@
-'use client';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Link from 'next/link';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+"use client";
+import { easeIn, motion } from "motion/react";
+import { useInView } from "react-intersection-observer";
+import Link from "next/link";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   const { ref, inView } = useInView({
@@ -17,16 +17,16 @@ const Footer = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut',
+        easeIn,
       },
     },
   };
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Shop', href: '/shop' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/shop" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   return (
@@ -34,7 +34,7 @@ const Footer = () => {
       ref={ref}
       variants={footerVariants}
       initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
+      animate={inView ? "visible" : "hidden"}
       className="bg-gray-50 border-t border-gray-200 text-gray-800"
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -56,7 +56,7 @@ const Footer = () => {
                 Company
               </h4>
               <ul className="mt-4 space-y-2">
-                {navItems.map(item => (
+                {navItems.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
@@ -122,7 +122,8 @@ const Footer = () => {
 
         <div className="mt-12 border-t border-gray-200 pt-8 text-center">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} The Carpenter. All Rights Reserved.
+            &copy; {new Date().getFullYear()} The Carpenter. All Rights
+            Reserved.
           </p>
         </div>
       </div>
