@@ -1,8 +1,8 @@
-'use client';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import ProductCard, { Product } from './ProductCard';
-import Link from 'next/link';
+"use client";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import ProductCard, { Product } from "./ProductCard";
+import Link from "next/link";
 
 interface ProductGridProps {
   title: string;
@@ -49,7 +49,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
   };
@@ -61,15 +61,15 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           <h2 className="text-2xl font-black uppercase tracking-tight">
             {title}
           </h2>
-          <NavLink href={viewCollectionLink}>View Collection</NavLink>
+          <NavLink href={viewCollectionLink}>View All</NavLink>
         </div>
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {products.map(product => (
+          {products.map((product) => (
             <motion.div key={product.id} variants={itemVariants}>
               <ProductCard {...product} />
             </motion.div>
@@ -81,4 +81,3 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 };
 
 export default ProductGrid;
-
