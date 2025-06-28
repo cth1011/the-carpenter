@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 
 export default function TwoColumnContent() {
   const [ref, inView] = useInView({
-    triggerOnce: true, // Animation only triggers once
+    triggerOnce: true,
     threshold: 0.4, // Trigger when 10% of the component is visible
   });
 
@@ -66,7 +66,7 @@ export default function TwoColumnContent() {
           className="relative aspect-[4/5]"
         >
           <Image
-            src="https://images.unsplash.com/photo-1618373012585-ae012fc350e8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d29vZCUyMGNhcnBlbnRlcnxlbnwwfHwwfHx8MA%3D%3D"
+            src="https://images.unsplash.com/photo-1682450195449-32ab08ddf7e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8d29vZCUyMGNhcnBlbnRlciUyMGRvb3JzfGVufDB8fDB8fHww"
             alt="Person on skateboard in a concrete bowl"
             layout="fill"
             objectFit="cover"
