@@ -1,14 +1,11 @@
 // components/FeaturedProducts.tsx
 import Link from "next/link";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity"; // Assuming you have a urlFor function for Sanity images
-
-// Define the shape of the product data
 interface Product {
   _id: string;
   name: string;
   slug: { current: string };
-  mainImage: any; // You might want to define a more specific type for your image
+  mainImage: string;
   category: string;
 }
 
@@ -26,10 +23,7 @@ const FeaturedProducts = ({ products }: { products: Product[] }) => {
                 <div className="relative h-64">
                   {product.mainImage && (
                     <Image
-                      src={urlFor(product.mainImage)
-                        .width(400)
-                        .height(400)
-                        .url()}
+                      src={product.mainImage}
                       alt={product.name}
                       layout="fill"
                       objectFit="cover"

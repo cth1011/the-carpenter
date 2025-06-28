@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { easeIn, motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import ProductCard, { Product } from "./ProductCard";
 import Link from "next/link";
@@ -49,7 +49,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        easeIn,
       },
     },
   };

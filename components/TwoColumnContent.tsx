@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Button from "./Button";
-import { motion } from "motion/react";
+import { easeIn, motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 
 export default function TwoColumnContent() {
@@ -16,7 +16,7 @@ export default function TwoColumnContent() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.8 },
     },
   };
 
@@ -25,7 +25,7 @@ export default function TwoColumnContent() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1.2, ease: "easeOut", delay: 0.2 },
+      transition: { duration: 1.2, easeIn, delay: 0.2 },
     },
   };
 
