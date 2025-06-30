@@ -3,7 +3,7 @@ import Button from "./Button";
 
 export default function Hero() {
   return (
-    <section className="relative h-[70vh] md:h-[95vh] w-full">
+    <section className="relative h-[95vh] w-full">
       <Image
         src="https://images.unsplash.com/photo-1606011082438-5e55fea65538?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="Two models wearing light grey sweatshirts"
