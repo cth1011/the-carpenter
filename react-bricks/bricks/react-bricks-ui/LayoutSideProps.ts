@@ -4,6 +4,7 @@ import {
   bgColors,
   highlightBgColors,
   buttonColors,
+  animationColors,
   gradients,
   pricingColors,
   PricingColorValue,
@@ -50,6 +51,41 @@ export const backgroundColorsEditProps: types.ISideEditProp<{
       bgColors.PURPLE,
       bgColors.FUCHSIA,
       bgColors.DARK_GRAY,
+    ],
+  },
+}
+
+export const buttonAnimationColorsEditProps: types.ISideEditProp<{
+  buttonAnimationColor: {
+    color: string
+    className: string
+  }
+}> = {
+  name: 'buttonAnimationColor',
+  label: 'Button Animation Color',
+  type: types.SideEditPropType.Select,
+  shouldRefreshText: true,
+  selectOptions: {
+    display: types.OptionsDisplay.Color,
+    options: [
+      animationColors.GRAY,
+      animationColors.RED,
+      animationColors.ORANGE,
+      animationColors.AMBER,
+      animationColors.YELLOW,
+      animationColors.LIME,
+      animationColors.GREEN,
+      animationColors.EMERALD,
+      animationColors.TEAL,
+      animationColors.CYAN,
+      animationColors.SKY,
+      animationColors.BLUE,
+      animationColors.INDIGO,
+      animationColors.VIOLET,
+      animationColors.PURPLE,
+      animationColors.FUCHSIA,
+      animationColors.PINK,
+      animationColors.ROSE,
     ],
   },
 }
@@ -271,6 +307,7 @@ export const buttonColorsEditProps: types.ISideEditProp<{
   selectOptions: {
     display: types.OptionsDisplay.Color,
     options: [
+      buttonColors.WHITE,
       buttonColors.GRAY,
       buttonColors.RED,
       buttonColors.ORANGE,

@@ -1,8 +1,11 @@
 import classNames from 'classnames'
 import { Text, Link, types, isAdmin } from 'react-bricks/rsc'
 import blockNames from '../../blockNames'
-import { buttonColors } from '../../colors'
-import { buttonColorsEditProps } from '../../LayoutSideProps'
+import { buttonColors, animationColors } from '../../colors'
+import {
+  buttonColorsEditProps,
+  buttonAnimationColorsEditProps,
+} from '../../LayoutSideProps'
 import ButtonClient from './ButtonClient'
 
 export interface ButtonProps {
@@ -15,6 +18,10 @@ export interface ButtonProps {
     color: string
     classNameSolid: string
     classNameOutline: string
+  }
+  buttonAnimationColor: {
+    color: string
+    className: string
   }
   variant: 'solid' | 'outline' | 'ghost'
   padding: 'normal' | 'small'
@@ -29,13 +36,14 @@ const Button: types.Brick<ButtonProps> = ({
   isTargetBlank,
   buttonType,
   buttonColor,
+  buttonAnimationColor,
   variant,
   padding,
   className,
   simpleAnchorLink = false,
   text,
   disabled = false,
-}) => {  
+}) => {
   const target = isTargetBlank
     ? { target: '_blank', rel: 'noopener noreferrer' }
     : {}
@@ -46,25 +54,36 @@ const Button: types.Brick<ButtonProps> = ({
         href={href}
         {...target}
         className={classNames(
-          'inline-block whitespace-nowrap text-center rounded-full font-bold leading-none hover:shadow-lg transition-all ease-out duration-150 hover:-translate-y-0.5',
+          'group relative overflow-hidden rounded-lg px-8 py-4 text-sm font-semibold text-black focus:outline-none',
           padding === 'small'
             ? 'py-2 px-4 text-sm min-w-[75px]'
-            : 'py-3 px-5 min-w-[120px]',
+            : 'px-8 py-4 min-w-[120px]',
           {
             [buttonColor?.classNameSolid]: variant === 'solid',
           },
           {
             [buttonColor?.classNameOutline]: variant === 'outline',
           },
+
           className
         )}
         simpleAnchor={simpleAnchorLink}
       >
+        <span
+          className={classNames(
+            'absolute inset-0 rounded-full transform scale-0 transition-transform duration-500 group-hover:scale-150',
+            buttonAnimationColor?.className
+          )}
+        ></span>
         <Text
           propName="text"
           value={text}
           placeholder="Action"
-          renderBlock={({ children }) => <span>{children}</span>}
+          renderBlock={({ children }) => (
+            <span className="relative text-black transition-colors duration-500 group-hover:text-white">
+              {children}
+            </span>
+          )}
         />
       </Link>
     )
@@ -78,7 +97,7 @@ const Button: types.Brick<ButtonProps> = ({
         disabled={disabled}
         //disabled={isAdmin && !previewMode}
         className={classNames(
-          'inline-block whitespace-nowrap text-center rounded-full font-bold leading-none hover:shadow-lg transition-all ease-out duration-150 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed',
+          'inline-block whitespace-nowrap text-center rounded-full font-bold leading-none hover:shadow-lg transition-all ease-out duration-150 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none',
           padding === 'small'
             ? 'py-2 px-4 text-sm min-w-[75px]'
             : 'py-3 px-5 min-w-[120px]',
@@ -134,6 +153,7 @@ Button.schema = {
     isTargetBlank: false,
     buttonType: 'submit',
     buttonColor: buttonColors.SKY.value,
+    buttonAnimationColor: animationColors.ORANGE.value,
     variant: 'solid',
     padding: 'normal',
   }),
@@ -193,6 +213,7 @@ Button.schema = {
       defaultOpen: true,
       props: [
         buttonColorsEditProps,
+        buttonAnimationColorsEditProps,
         {
           name: 'variant',
           label: 'Variant',
@@ -206,6 +227,7 @@ Button.schema = {
             ],
           },
         },
+
         {
           name: 'padding',
           label: 'Size',

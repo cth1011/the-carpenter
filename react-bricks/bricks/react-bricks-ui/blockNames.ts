@@ -1,10 +1,9 @@
 enum blockNames {
-  FeatureItem = 'feature-item',
-  Features = 'features',
   Cards = 'cards',
   Card = 'card',
   LinkCards = 'link-cards',
   LinkCard = 'link-card',
+  Hero = 'hero',
   HeroUnit = 'hero-unit',
   HeroUnit2 = 'hero-unit-2',
   Separator = 'separator',
@@ -59,9 +58,7 @@ enum blockNames {
   Header = 'header',
   HeaderMenuItem = 'header-menu-item',
   HeaderMenuSubItem = 'header-menu-sub-item',
-  Footer = 'footer',
-  FooterColumn = 'footer-column',
-  FooterLink = 'footer-link',
+  
   Video = 'video',
   Code = 'code',
   Paragraph = 'paragraph',
@@ -75,6 +72,7 @@ enum blockNames {
   Office = 'contact-office',
   ContactsForm = 'contact-form',
   BlogTitle = 'blog-title',
+  
 }
 
 export default blockNames

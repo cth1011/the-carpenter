@@ -556,7 +556,166 @@ type ButtonColor = {
 
 type ButtonColors = Record<string, ButtonColor>
 
+//====================
+// ANIMATION COLORS
+//====================
+
+type AnimationColor = {
+  label: string
+  value: {
+    color: string
+    className: string
+  }
+}
+
+type AnimationColors = Record<string, AnimationColor>
+
+export const animationColors = {
+  WHITE: {
+    label: tailwindColors.WHITE.label,
+    value: {
+      color: tailwindColors.WHITE.color500,
+      className: 'bg-white',
+    },
+  },
+  GRAY: {
+    label: tailwindColors.GRAY.label,
+    value: {
+      color: tailwindColors.GRAY.color500,
+      className: `bg-${tailwindColors.GRAY.name}-200`,
+    },
+  },
+  RED: {
+    label: tailwindColors.RED.label,
+    value: {
+      color: tailwindColors.RED.color500,
+      className: `bg-${tailwindColors.RED.name}-200`,
+    },
+  },
+  ORANGE: {
+    label: tailwindColors.ORANGE.label,
+    value: {
+      color: tailwindColors.ORANGE.color500,
+      className: `bg-${tailwindColors.ORANGE.name}-200`,
+    },
+  },
+  AMBER: {
+    label: tailwindColors.AMBER.label,
+    value: {
+      color: tailwindColors.AMBER.color500,
+      className: `bg-${tailwindColors.AMBER.name}-200`,
+    },
+  },
+  YELLOW: {
+    label: tailwindColors.YELLOW.label,
+    value: {
+      color: tailwindColors.YELLOW.color500,
+      className: `bg-${tailwindColors.YELLOW.name}-200`,
+    },
+  },
+  LIME: {
+    label: tailwindColors.LIME.label,
+    value: {
+      color: tailwindColors.LIME.color500,
+      className: `bg-${tailwindColors.LIME.name}-200`,
+    },
+  },
+  GREEN: {
+    label: tailwindColors.GREEN.label,
+    value: {
+      color: tailwindColors.GREEN.color500,
+      className: `bg-${tailwindColors.GREEN.name}-200`,
+    },
+  },
+  EMERALD: {
+    label: tailwindColors.EMERALD.label,
+    value: {
+      color: tailwindColors.EMERALD.color500,
+      className: `bg-${tailwindColors.EMERALD.name}-200`,
+    },
+  },
+  TEAL: {
+    label: tailwindColors.TEAL.label,
+    value: {
+      color: tailwindColors.TEAL.color500,
+      className: `bg-${tailwindColors.TEAL.name}-200`,
+    },
+  },
+  CYAN: {
+    label: tailwindColors.CYAN.label,
+    value: {
+      color: tailwindColors.CYAN.color500,
+      className: `bg-${tailwindColors.CYAN.name}-200`,
+    },
+  },
+  SKY: {
+    label: tailwindColors.SKY.label,
+    value: {
+      color: tailwindColors.SKY.color500,
+      className: `bg-${tailwindColors.SKY.name}-200`,
+    },
+  },
+  BLUE: {
+    label: tailwindColors.BLUE.label,
+    value: {
+      color: tailwindColors.BLUE.color500,
+      className: `bg-${tailwindColors.BLUE.name}-200`,
+    },
+  },
+  INDIGO: {
+    label: tailwindColors.INDIGO.label,
+    value: {
+      color: tailwindColors.INDIGO.color500,
+      className: `bg-${tailwindColors.INDIGO.name}-200`,
+    },
+  },
+  VIOLET: {
+    label: tailwindColors.VIOLET.label,
+    value: {
+      color: tailwindColors.VIOLET.color500,
+      className: `bg-${tailwindColors.VIOLET.name}-200`,
+    },
+  },
+  PURPLE: {
+    label: tailwindColors.PURPLE.label,
+    value: {
+      color: tailwindColors.PURPLE.color500,
+      className: `bg-${tailwindColors.PURPLE.name}-200`,
+    },
+  },
+  FUCHSIA: {
+    label: tailwindColors.FUCHSIA.label,
+    value: {
+      color: tailwindColors.FUCHSIA.color500,
+      className: `bg-${tailwindColors.FUCHSIA.name}-200`,
+    },
+  },
+  PINK: {
+    label: tailwindColors.PINK.label,
+    value: {
+      color: tailwindColors.PINK.color500,
+      className: `bg-${tailwindColors.PINK.name}-200`,
+    },
+  },
+  ROSE: {
+    label: tailwindColors.ROSE.label,
+    value: {
+      color: tailwindColors.ROSE.color500,
+      className: `bg-${tailwindColors.ROSE.name}-200`,
+    },
+  },
+} as const satisfies AnimationColors;
+
 export const buttonColors = {
+  WHITE: {
+    label: tailwindColors.WHITE.label,
+    value: {
+      color: tailwindColors.WHITE.color500,
+      classNameSolid: 'bg-white text-black border border-gray-200 hover:bg-gray-100',
+      classNameOutline:
+        'border border-white text-white',
+    },
+  },
   GRAY: {
     label: tailwindColors.GRAY.label,
     value: {

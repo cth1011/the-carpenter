@@ -16,7 +16,7 @@ import { ThemeProvider } from '@/components/themeProvider'
 import { i18n } from '@/i18n-config'
 import config from '@/react-bricks/config'
 
-import { Nunito_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
 import '@/css/styles.css'
 
@@ -25,13 +25,13 @@ export const metadata = {
   description: 'Next.js with Server Components',
 }
 
-const nunito = Nunito_Sans({
+const inter = Inter({
   adjustFontFallback: false,
   subsets: ['latin'],
   display: 'swap',
   weight: ['300', '400', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
-  variable: '--font-nunito',
+  variable: '--font-inter',
 })
 
 register(config)
@@ -111,7 +111,7 @@ export default async function Layout(props: {
   return (
     <html lang={params.lang} suppressHydrationWarning>
       <body
-        className={`${nunito.variable} font-sans dark:bg-gray-900 antialiased`}
+        className={`${inter.variable} font-sans dark:bg-gray-900 antialiased`}
       >
         <ThemeProvider
           attribute="class"

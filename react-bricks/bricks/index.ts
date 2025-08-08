@@ -1,23 +1,147 @@
 import { types } from 'react-bricks/rsc'
 
-import HeroUnit from './custom/MyHeroUnit'
-import Pokemon from './custom/Pokemon'
-// import RegisterBrick from './custom/RegisterBrick/RegisterBrick'
-import reactBricksUITheme from './react-bricks-ui'
+import TwoColumnContent from './the-carpenter-ui/TwoColumnContent'
+import Hero from './the-carpenter-ui/Hero'
+import Header from './the-carpenter-ui/Header'
+import NavLink from './the-carpenter-ui/NavLink'
+import Features from './the-carpenter-ui/Features'
+import FeatureItem from './the-carpenter-ui/FeatureItem'
+import Footer from './the-carpenter-ui/Footer/Footer'
+import FooterNavLink from './the-carpenter-ui/Footer/FooterNavLink'
+import FooterNavSection from './the-carpenter-ui/Footer/FooterNavSection'
+import FooterSocialLink from './the-carpenter-ui/Footer/FooterSocialLink'
+import ContactItem from './the-carpenter-ui/Footer/ContactItem'
+import AboutTwoColumn from './the-carpenter-ui/AboutTwoColumn'
+import AboutHero from './the-carpenter-ui/AboutHero'
 
-const bricks: types.Theme[] = [
-  reactBricksUITheme, // React Bricks UI
-  {
-    themeName: 'Default',
-    categories: [
-      {
-        categoryName: 'Custom bricks',
-        bricks: [HeroUnit, Pokemon], // Custom Bricks
-      },
-    ],
-  },
+import {
+  Badge,
+  Button,
+  BulletListItem,
+  HeroUnit,
+  HeroUnit2,
+  TextMedia,
+  TextMediaLogo,
+  Title,
+  Testimonial,
+  Testimonial3Cols,
+  Testimonial3ColsItem,
+  Customers,
+  Customer,
+  LogoGrid,
+  LogoGridItem,
+  SmallLogoGrid,
+  SmallLogoGridItem,
+  Faqs,
+  Faq,
+  Faqs2cols,
+  CallToAction,
+  Map,
+  Offices,
+  Office,
+  ContactsForm,
+  FeatureCallout,
+  NewsletterHero,
+  NewsletterSubscribe,
+  Team,
+  TeamItem,
+  Team2Cols,
+  Team2ColsItem,
+  Cards,
+  Card,
+  LinkCards,
+  LinkCard,
+  ImageCarousel,
+  ImageCarouselItem,
+  Video,
+  HorizontalRule,
+  Spacer,
+  Table,
+  TableRow,
+  TableCell,
+  Code,
+  Paragraph,
+  BigImage,
+  Tweet,
+  Pricing,
+  PricingPlan,
+  PlanFeature,
+  Documents,
+  Document,
+} from './react-bricks-ui'
+
+
+const bricks: types.Brick<any>[] = [
+  // The Carpenter UI
+  Header,
+  Hero,
+  TwoColumnContent,
+  NavLink,
+  Features,
+  FeatureItem,
+  Footer,
+  FooterNavLink,
+  FooterNavSection,
+  FooterSocialLink,
+  ContactItem,
+  AboutTwoColumn,
+  AboutHero,
+
+  // React Bricks UI
+
+  Badge,
+  Button,
+  BulletListItem,
+  HeroUnit,
+  HeroUnit2,
+  TextMedia,
+  TextMediaLogo,
+  Title,
+  Testimonial,
+  Testimonial3Cols,
+  Testimonial3ColsItem,
+  Customers,
+  Customer,
+  LogoGrid,
+  LogoGridItem,
+  SmallLogoGrid,
+  SmallLogoGridItem,
+  Faqs,
+  Faq,
+  Faqs2cols,
+  CallToAction,
+  Map,
+  Offices,
+  Office,
+  ContactsForm,
+  FeatureCallout,
+  NewsletterHero,
+  NewsletterSubscribe,
+  Team,
+  TeamItem,
+  Team2Cols,
+  Team2ColsItem,
+  Cards,
+  Card,
+  LinkCards,
+  LinkCard,
+  ImageCarousel,
+  ImageCarouselItem,
+  Video,
+  HorizontalRule,
+  Spacer,
+  Table,
+  TableRow,
+  TableCell,
+  Code,
+  Paragraph,
+  BigImage,
+  Tweet,
+  Pricing,
+  PricingPlan,
+  PlanFeature,
+  Documents,
+  Document,
 ]
-
-// const bricks = [HeroUnit]
 
 export default bricks

@@ -4,9 +4,7 @@ import { types } from 'react-bricks/rsc'
 import Header from './layout/Header'
 import HeaderMenuItem from './layout/HeaderMenuItem'
 import HeaderMenuSubItem from './layout/HeaderMenuSubItem'
-import Footer from './layout/Footer'
-import FooterColumn from './layout/FooterColumn'
-import FooterLink from './layout/FooterLink'
+
 
 // SHARED
 import Badge from './shared/bricks/Badge'
@@ -16,8 +14,6 @@ import Button from './shared/bricks/Button'
 // MAIN CONTENT SECTIONS
 import TextMedia from './mainContent/TextMedia/TextMedia'
 import TextMediaLogo from './mainContent/TextMedia/TextMediaLogo'
-import Features from './mainContent/Features/Features'
-import FeatureItem from './mainContent/Features/FeatureItem'
 import FeatureCallout from './mainContent/FeatureCallout/FeatureCallout'
 import Cards from './mainContent/Cards/Cards'
 import Card from './mainContent/Cards/Card'
@@ -109,8 +105,6 @@ const allBricks: types.Theme = {
       bricks: [
         TextMedia,
         TextMediaLogo,
-        Features,
-        FeatureItem,
         FeatureCallout,
         Cards,
         Card,
@@ -201,9 +195,6 @@ const allBricks: types.Theme = {
         Header,
         HeaderMenuItem,
         HeaderMenuSubItem,
-        Footer,
-        FooterColumn,
-        FooterLink,
       ],
     },
     {
@@ -218,9 +209,7 @@ export {
   Header,
   HeaderMenuItem,
   HeaderMenuSubItem,
-  Footer,
-  FooterColumn,
-  FooterLink,
+  
   Badge,
   Button,
   BulletListItem,
@@ -253,8 +242,6 @@ export {
   TeamItem,
   Team2Cols,
   Team2ColsItem,
-  Features,
-  FeatureItem,
   Cards,
   Card,
   LinkCards,

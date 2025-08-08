@@ -7,7 +7,7 @@ import {
   containerSizeEditProps,
   LayoutProps,
   sectionPaddingsEditProps,
-} from '../../LayoutSideProps'
+} from '@/react-bricks/bricks/react-bricks-ui/LayoutSideProps'
 import Container from '../../shared/components/Container'
 import Section from '../../shared/components/Section'
 
