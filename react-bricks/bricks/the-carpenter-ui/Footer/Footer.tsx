@@ -22,8 +22,8 @@ const Footer: types.Brick<FooterProps> = ({
   return (
     <footer className="bg-gray-50 border-t border-gray-200 text-gray-800">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-1">
+        <div className="flex flex-col sm:flex-row justify-between gap-8 sm:gap-16">
+          <div className="sm:w-1/4">
             <Text
               propName="companyName"
               value={companyName}
@@ -52,11 +52,11 @@ const Footer: types.Brick<FooterProps> = ({
             </div>
           </div>
 
-          <div className="md:col-span-2 grid grid-cols-1 md:col-grid-3 gap-4">
+          <div className="sm:w-1/2 justify-center sm:border-x-1 sm:px-8 flex flex-col sm:flex-row gap-4 sm:gap-16">
             <Repeater propName="navSections" items={navSections} />
           </div>
 
-          <div className="md:col-span-1">
+          <div className="flex flex-col gap-2 sm:w-1/4">
             <h4 className="text-sm font-semibold uppercase tracking-wider">
               Address
             </h4>
@@ -65,7 +65,7 @@ const Footer: types.Brick<FooterProps> = ({
               value={address}
               placeholder="Address"
               renderBlock={({ children }) => (
-                <div className="text-xs pt-3 pb-4 text-gray-500">
+                <div className="text-xs pt-2 pb-4 text-gray-500">
                   {children}
                 </div>
               )}
@@ -85,7 +85,7 @@ const Footer: types.Brick<FooterProps> = ({
               value={workHours}
               placeholder="workHours"
               renderBlock={({ children }) => (
-                <div className="text-xs pt-3 pb-4 text-gray-500">
+                <div className="text-xs pt-2 pb-4 text-gray-500">
                   {children}
                 </div>
               )}

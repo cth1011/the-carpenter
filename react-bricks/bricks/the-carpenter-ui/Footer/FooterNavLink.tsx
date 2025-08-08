@@ -10,7 +10,7 @@ const FooterNavLink: types.Brick<FooterNavLinkProps> = ({ linkText, href }) => {
     <li>
       <Link
         href={href}
-        className="group/link relative pb-1 text-sm text-gray-500 hover:text-black transition-colors"
+        className="group/link relative inline-block pb-1 text-sm text-gray-500 hover:text-black transition-colors"
       >
         <Text
           propName="linkText"

@@ -8,26 +8,6 @@ interface ContactItemProps {
 const ContactItem: types.Brick<ContactItemProps> = ({ text, contactType }) => {
   const textValue = typeof text === 'string' ? text : text[0]?.children[0]?.text
 
-  const renderContent = () => {
-    const sharedClasses = 'hover:text-black transition-colors cursor-pointer'
-    switch (contactType) {
-      case 'email':
-        return (
-          <a href={`mailto:${textValue}`} className={sharedClasses}>
-            {textValue}
-          </a>
-        )
-      case 'tel':
-        return (
-          <a href={`tel:${textValue}`} className={sharedClasses}>
-            {textValue}
-          </a>
-        )
-      default:
-        return <>{textValue}</>
-    }
-  }
-
   return (
     <div>
       <Text
@@ -43,7 +23,9 @@ const ContactItem: types.Brick<ContactItemProps> = ({ text, contactType }) => {
                     ? `mailto:${textValue}`
                     : `tel:${textValue}`
                 }
-                className="hover:text-black transition-colors cursor-pointer"
+                className={`${
+                  contactType === 'email' || 'text-black'
+                } hover:text-black transition-colors cursor-pointer`}
               >
                 {children}
               </a>
