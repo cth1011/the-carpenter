@@ -63,7 +63,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ logoText, navLinks }) => {
 
   return (
     <header className={headerClasses}>
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex-1 flex items-center text-nowrap justify-start">
             <Link
@@ -87,8 +87,10 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ logoText, navLinks }) => {
                 className: linkClasses,
                 underlineColorClass: underlineClasses,
               }}
-              renderItemWrapper={(item) => (
-                <div className="text-base font-medium">{item}</div>
+              renderItemWrapper={(item, index) => (
+                <div key={'item' + index} className="text-base font-medium">
+                  {item}
+                </div>
               )}
             />
           </nav>

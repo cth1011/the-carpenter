@@ -22,7 +22,7 @@ const FeaturesClient: React.FC<FeaturesClientProps> = ({ features }) => {
   }
 
   return (
-    <section className="bg-white py-20 md:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+    <section className="bg-white mx-auto max-w-screen-xl py-20 md:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
       <motion.div
         ref={ref}
         variants={containerVariants}

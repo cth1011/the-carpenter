@@ -42,11 +42,20 @@ const Footer: types.Brick<FooterProps> = ({
                 <p className="mt-2 text-sm text-gray-500">{children}</p>
               )}
             />
+            <div className="pt-8">
+              <h4 className="text-sm font-semibold uppercase tracking-wider">
+                CONNECT WITH US
+              </h4>
+              <div className="flex mt-4 space-x-4">
+                <Repeater propName="socialLinks" items={socialLinks} />
+              </div>
+            </div>
           </div>
 
-          <div className="md:col-span-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="md:col-span-2 grid grid-cols-1 md:col-grid-3 gap-4">
             <Repeater propName="navSections" items={navSections} />
           </div>
+
           <div className="md:col-span-1">
             <h4 className="text-sm font-semibold uppercase tracking-wider">
               Address
@@ -56,7 +65,7 @@ const Footer: types.Brick<FooterProps> = ({
               value={address}
               placeholder="Address"
               renderBlock={({ children }) => (
-                <div className="text-xs pt-3 pb-4 text-gray-500 min-w-[200px]">
+                <div className="text-xs pt-3 pb-4 text-gray-500">
                   {children}
                 </div>
               )}
@@ -65,11 +74,9 @@ const Footer: types.Brick<FooterProps> = ({
             <h4 className="text-sm font-semibold uppercase tracking-wider">
               Contacts
             </h4>
-            <div className="flex flex-col text-xs pt-2  text-gray-500 pb-2 min-w-[200px]">
+            <div className="flex flex-col text-xs pb-4 text-gray-500">
               <Repeater propName="contacts" items={contacts} />
             </div>
-          </div>
-          <div className="md:col-span-1">
             <h4 className="text-sm font-semibold uppercase tracking-wider">
               Working Hours
             </h4>
@@ -78,17 +85,11 @@ const Footer: types.Brick<FooterProps> = ({
               value={workHours}
               placeholder="workHours"
               renderBlock={({ children }) => (
-                <div className="text-xs pt-3 pb-4 text-gray-500 min-w-[200px]">
+                <div className="text-xs pt-3 pb-4 text-gray-500">
                   {children}
                 </div>
               )}
             />
-            <h4 className="text-sm font-semibold uppercase tracking-wider">
-              Connect
-            </h4>
-            <div className="flex mt-4 space-x-4">
-              <Repeater propName="socialLinks" items={socialLinks} />
-            </div>
           </div>
         </div>
 

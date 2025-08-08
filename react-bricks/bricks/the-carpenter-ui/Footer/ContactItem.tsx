@@ -5,10 +5,7 @@ interface ContactItemProps {
   contactType?: 'text' | 'email' | 'tel'
 }
 
-const ContactItem: types.Brick<ContactItemProps> = ({
-  text,
-  contactType,
-}) => {
+const ContactItem: types.Brick<ContactItemProps> = ({ text, contactType }) => {
   const textValue = typeof text === 'string' ? text : text[0]?.children[0]?.text
 
   const renderContent = () => {
@@ -38,7 +35,7 @@ const ContactItem: types.Brick<ContactItemProps> = ({
         value={text}
         placeholder="Contact info"
         renderBlock={({ children }) => (
-          <div className="text-xs pb-2 min-w-[200px]">
+          <div className="text-xs pt-1">
             {contactType === 'email' || contactType === 'tel' ? (
               <a
                 href={
