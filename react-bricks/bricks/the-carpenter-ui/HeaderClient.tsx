@@ -9,7 +9,7 @@ import logo from '@/public/logo.svg'
 
 interface HeaderClientProps {
   logo: any
-  logoText: string
+  logoText: types.TextValue
   navLinks: any
 }
 
