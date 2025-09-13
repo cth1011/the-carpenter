@@ -1,0 +1,316 @@
+'use client'
+
+import { useState, useEffect, useCallback } from 'react'
+import ProductCard from '@/components/ProductCard'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Search, Filter, Grid, List } from 'lucide-react'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination'
+import { Skeleton } from '@/components/ui/skeleton'
+import { usePagination, DOTS } from '@/hooks/usePagination'
+import { Product } from '@/payload-types'
+import { useRouter, useSearchParams } from 'next/navigation'
+
+export default function ProductsPageClient() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const [products, setProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState(true)
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [categories, setCategories] = useState<any[]>([])
+  const [totalPages, setTotalPages] = useState(1)
+  const [totalDocs, setTotalDocs] = useState(0)
+  const pageSize = 12
+
+  const currentPage = Number(searchParams.get('page')) || 1
+  const searchTerm = searchParams.get('search') || ''
+  const selectedCategory = searchParams.get('category') || 'all'
+
+  const [localSearchTerm, setLocalSearchTerm] = useState(searchTerm)
+
+  const fetchProducts = useCallback(async () => {
+    setLoading(true)
+    try {
+      const params = new URLSearchParams({
+        page: currentPage.toString(),
+        limit: pageSize.toString(),
+        depth: '2',
+      })
+      if (selectedCategory && selectedCategory !== 'all') {
+        params.set('category', selectedCategory)
+      }
+      if (searchTerm) {
+        params.set('search', searchTerm)
+      }
+
+      const response = await fetch(`/api/public/products?${params.toString()}`)
+      if (response.ok) {
+        const data = await response.json()
+        setProducts(data.docs || [])
+        setTotalPages(data.totalPages)
+        setTotalDocs(data.totalDocs)
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error)
+    } finally {
+      setLoading(false)
+    }
+  }, [currentPage, selectedCategory, searchTerm])
+
+  useEffect(() => {
+    fetchProducts()
+  }, [fetchProducts])
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/api/categories')
+        if (response.ok) {
+          const data = await response.json()
+          setCategories(data.docs || [])
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error)
+      }
+    }
+    fetchCategories()
+  }, [])
+
+  const handlePageChange = (page: number) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('page', page.toString())
+    router.replace(`?${params.toString()}`)
+  }
+
+  const handleCategoryChange = (category: string) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('category', category)
+    params.set('page', '1')
+    router.replace(`?${params.toString()}`)
+  }
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (localSearchTerm !== searchTerm) {
+        if (localSearchTerm.length === 0 || localSearchTerm.length >= 3) {
+          const params = new URLSearchParams(searchParams)
+          params.set('search', localSearchTerm)
+          params.set('page', '1')
+          router.replace(`?${params.toString()}`)
+        }
+      }
+    }, 500)
+
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [localSearchTerm, searchTerm, router, searchParams])
+
+  const clearFilters = () => {
+    setLocalSearchTerm('')
+    const params = new URLSearchParams(searchParams)
+    params.delete('search')
+    params.delete('category')
+    params.set('page', '1')
+    router.replace(`?${params.toString()}`)
+  }
+
+  const paginationRange = usePagination({
+    currentPage,
+    totalCount: totalDocs,
+    siblingCount: 1,
+    pageSize,
+  })
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Our Door Collection
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Discover our handcrafted doors, each piece carefully designed and
+            built to enhance your living spaces
+          </p>
+        </div>
+
+        {/* Filters and Search */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Filter className="h-5 w-5" />
+              Filters & Search
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-4">
+              {/* Search */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search doors..."
+                  value={localSearchTerm}
+                  onChange={(e) => setLocalSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                />
+              </div>
+
+              {/* Category Filter */}
+              <select
+                value={selectedCategory}
+                onChange={(e) => handleCategoryChange(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+              >
+                <option value="all">All Categories</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* View Mode Toggle */}
+              <div className="flex gap-2">
+                <Button
+                  variant={viewMode === 'grid' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                >
+                  <Grid className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'list' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Results Count */}
+        <div className="mb-6">
+          <p className="text-gray-600">
+            Showing {products.length} of {totalDocs} products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div
+          className={
+            viewMode === 'grid'
+              ? 'grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
+              : 'space-y-4'
+          }
+        >
+          {loading
+            ? Array.from({ length: pageSize }).map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-white overflow-hidden border border-gray-200"
+                >
+                  <Skeleton className="aspect-[3/4] w-full" />
+                  <div className="p-4">
+                    <Skeleton className="h-4 w-2/3 mb-2" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                </div>
+              ))
+            : products.length === 0
+            ? (
+              <div className="col-span-full">
+                <Card className="text-center py-12">
+                  <CardContent>
+                    <p className="text-gray-600 text-lg">
+                      No products found matching your criteria.
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="mt-4"
+                      onClick={clearFilters}
+                    >
+                      Clear Filters
+                    </Button>
+                  </CardContent>
+                </Card>
+                </div>
+              )
+            : products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+        </div>
+        <div className="mt-8">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href={`?page=${currentPage - 1}`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handlePageChange(currentPage - 1)
+                  }}
+                  className={
+                    currentPage === 1
+                      ? 'pointer-events-none opacity-50'
+                      : undefined
+                  }
+                />
+              </PaginationItem>
+              {paginationRange.map((pageNumber, index) => {
+                if (pageNumber === DOTS) {
+                  return (
+                    <PaginationItem key={index}>
+                      <PaginationEllipsis />
+                    </PaginationItem>
+                  )
+                }
+
+                return (
+                  <PaginationItem key={index}>
+                    <PaginationLink
+                      href={`?page=${pageNumber}`}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        handlePageChange(pageNumber as number)
+                      }}
+                      isActive={pageNumber === currentPage}
+                    >
+                      {pageNumber}
+                    </PaginationLink>
+                  </PaginationItem>
+                )
+              })}
+              <PaginationItem>
+                <PaginationNext
+                  href={`?page=${currentPage + 1}`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handlePageChange(currentPage + 1)
+                  }}
+                  className={
+                    currentPage === totalPages
+                      ? 'pointer-events-none opacity-50'
+                      : undefined
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      </div>
+    </div>
+  )
+}

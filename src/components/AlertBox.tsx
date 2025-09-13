@@ -1,11 +1,20 @@
 import React from 'react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
-const AlertBox: React.FC = () => {
+interface AlertBoxProps {
+  children: React.ReactNode
+  variant?: 'default' | 'destructive'
+  className?: string
+}
+
+const AlertBox = ({
+  children,
+  variant = 'default',
+  className,
+}: AlertBoxProps) => {
   return (
-    <Alert>
-      <AlertTitle>Heads up!</AlertTitle>
-      <AlertDescription>Please add an appropriate title.</AlertDescription>
+    <Alert variant={variant} className={className}>
+      {children}
     </Alert>
   )
 }
