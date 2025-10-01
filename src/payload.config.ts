@@ -9,6 +9,7 @@ import { Products } from './collections/Products'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { LandingPage, Header, Footer } from './globals'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,6 +24,15 @@ export default buildConfig({
   },
   collections: [Users, Posts, Products, Media, Pages, Categories],
   globals: [LandingPage, Header, Footer],
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      clientUploads: true,
+    }),
+  ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
