@@ -132,17 +132,8 @@ export default function ProductsPageClient() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Our Door Collection
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover our handcrafted doors, each piece carefully designed and
-            built to enhance your living spaces
-          </p>
-        </div>
+      <div className="container mx-auto px-4">
+
 
         {/* Filters and Search */}
         <Card className="mb-8">
@@ -216,41 +207,41 @@ export default function ProductsPageClient() {
               : 'space-y-4'
           }
         >
-          {loading
-            ? Array.from({ length: pageSize }).map((_, i) => (
-                <div
-                  key={i}
-                  className="bg-white overflow-hidden border border-gray-200"
-                >
-                  <Skeleton className="aspect-[3/4] w-full" />
-                  <div className="p-4">
-                    <Skeleton className="h-4 w-2/3 mb-2" />
-                    <Skeleton className="h-4 w-1/2" />
-                  </div>
+          {loading ? (
+            Array.from({ length: pageSize }).map((_, i) => (
+              <div
+                key={i}
+                className="bg-white overflow-hidden border border-gray-200"
+              >
+                <Skeleton className="aspect-[3/4] w-full" />
+                <div className="p-4">
+                  <Skeleton className="h-4 w-2/3 mb-2" />
+                  <Skeleton className="h-4 w-1/2" />
                 </div>
-              ))
-            : products.length === 0
-            ? (
-              <div className="col-span-full">
-                <Card className="text-center py-12">
-                  <CardContent>
-                    <p className="text-gray-600 text-lg">
-                      No products found matching your criteria.
-                    </p>
-                    <Button
-                      variant="outline"
-                      className="mt-4"
-                      onClick={clearFilters}
-                    >
-                      Clear Filters
-                    </Button>
-                  </CardContent>
-                </Card>
-                </div>
-              )
-            : products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+              </div>
+            ))
+          ) : products.length === 0 ? (
+            <div className="col-span-full">
+              <Card className="text-center py-12">
+                <CardContent>
+                  <p className="text-gray-600 text-lg">
+                    No products found matching your criteria.
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="mt-4"
+                    onClick={clearFilters}
+                  >
+                    Clear Filters
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          ) : (
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          )}
         </div>
         <div className="mt-8">
           <Pagination>

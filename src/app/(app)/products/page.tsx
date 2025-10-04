@@ -1,9 +1,13 @@
 import { Suspense } from 'react'
 import ProductsPageClient from './ProductsPageClient'
 import { Skeleton } from '@/components/ui/skeleton'
+import { getPayload } from 'payload'
+import config from '@/payload.config'
+
+import BlockRenderer from '@/blocks/BlockRenderer'
 
 const PageSkeleton = () => (
-  <div className="max-w-7xl mx-auto px-4 py-8">
+  <div className="container mx-auto px-4 py-8">
     <div className="text-center mb-8">
       <Skeleton className="h-10 w-1/2 mx-auto" />
       <Skeleton className="h-6 w-3/4 mx-auto mt-4" />
@@ -23,9 +27,20 @@ const PageSkeleton = () => (
   </div>
 )
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const payload = await getPayload({ config })
+  const productsPage = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'products',
+      },
+    },
+  })
+
   return (
     <Suspense fallback={<PageSkeleton />}>
+      <BlockRenderer layout={productsPage.docs[0].layout} pageTitle={productsPage.docs[0].title} />
       <ProductsPageClient />
     </Suspense>
   )

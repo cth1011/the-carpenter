@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useRouter, useSearchParams } from 'next/navigation'
-import ProductsPage from './page'
+import ProductsPageClient from './ProductsPageClient'
 
 // Mock Next.js navigation hooks
 vi.mock('next/navigation', () => ({
@@ -83,25 +83,6 @@ describe('ProductsPage', () => {
     ],
   }
 
-  it('renders the page title and description', async () => {
-    mockFetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockProductsResponse,
-      })
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockCategoriesResponse,
-      })
-
-    render(<ProductsPage />)
-
-    expect(screen.getByText('Our Door Collection')).toBeInTheDocument()
-    expect(
-      screen.getByText(/Discover our handcrafted doors/)
-    ).toBeInTheDocument()
-  })
-
   it('fetches and displays products on mount', async () => {
     mockFetch
       .mockResolvedValueOnce({
@@ -113,7 +94,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     // Wait for products to load
     await waitFor(() => {
@@ -147,7 +128,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     // Should show loading state (you might need to adjust this selector based on your Skeleton component)
     expect(screen.getByText(/showing/i)).toBeInTheDocument()
@@ -173,7 +154,7 @@ describe('ProductsPage', () => {
       })
 
     const user = userEvent.setup()
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     // Wait for initial load
     await waitFor(() => {
@@ -204,7 +185,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     // Wait for categories to load
     await waitFor(() => {
@@ -235,7 +216,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     await waitFor(() => {
       expect(screen.getByTestId('product-1')).toBeInTheDocument()
@@ -259,7 +240,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     await waitFor(() => {
       expect(screen.getByTestId('product-1')).toBeInTheDocument()
@@ -306,7 +287,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     await waitFor(() => {
       expect(
@@ -347,7 +328,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     await waitFor(() => {
       expect(screen.getByText('Clear Filters')).toBeInTheDocument()
@@ -374,7 +355,7 @@ describe('ProductsPage', () => {
     // Mock console.error to avoid noise in tests
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     // Should show products count as 0 when there's an error
     await waitFor(() => {
@@ -412,7 +393,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     // Verify API was called with correct parameters
     await waitFor(() => {
@@ -439,7 +420,7 @@ describe('ProductsPage', () => {
         json: async () => mockCategoriesResponse,
       })
 
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     await waitFor(() => {
       expect(screen.getByText('Showing 2 of 2 products')).toBeInTheDocument()
@@ -458,7 +439,7 @@ describe('ProductsPage', () => {
       })
 
     const user = userEvent.setup()
-    render(<ProductsPage />)
+    render(<ProductsPageClient />)
 
     // Wait for initial load
     await waitFor(() => {

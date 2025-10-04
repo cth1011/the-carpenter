@@ -20,7 +20,7 @@ export function AboutPageClient({ page: initialPage }: { page: Page }) {
 
   return (
     <div className="min-h-screen">
-      <BlockRenderer layout={layout} />
+      <BlockRenderer layout={layout} pageTitle={data.title} />
     </div>
   )
 }

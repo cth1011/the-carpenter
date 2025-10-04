@@ -275,7 +275,6 @@ export interface Page {
     | (
         | {
             title: string;
-            text?: string | null;
             image: number | Media;
             id?: string | null;
             blockName?: string | null;
@@ -310,7 +309,7 @@ export interface Page {
               root: {
                 type: string;
                 children: {
-                  type: string;
+                  type: any;
                   version: number;
                   [k: string]: unknown;
                 }[];
@@ -540,7 +539,6 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
-              text?: T;
               image?: T;
               id?: T;
               blockName?: T;
