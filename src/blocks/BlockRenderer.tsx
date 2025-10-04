@@ -1,15 +1,15 @@
 import { Page } from '@/payload-types'
-import AboutHero from './AboutHero'
+import PageHero from './PageHero'
 import AboutTwoColumn from './AboutTwoColumn'
 import Features from './Features'
 
 const blockComponents = {
-  hero: AboutHero,
+  hero: PageHero,
   twoColumn: AboutTwoColumn,
   features: Features,
 } as const
 
-const BlockRenderer = ({ layout }: { layout: Page['layout'] }) => {
+const BlockRenderer = ({ layout, pageTitle }: { layout: Page['layout']; pageTitle?: string }) => {
   if (!layout) {
     return null
   }
@@ -20,7 +20,8 @@ const BlockRenderer = ({ layout }: { layout: Page['layout'] }) => {
         // @ts-ignore
         const BlockComponent = blockComponents[block.blockType]
         if (BlockComponent) {
-          return <BlockComponent key={i} {...block} />
+          // @ts-ignore
+          return <BlockComponent key={i} {...block} pageTitle={pageTitle} />
         }
         return null
       })}

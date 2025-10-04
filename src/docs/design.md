@@ -184,7 +184,7 @@ className = 'px-6 py-3 md:px-8 md:py-4'
 className = 'w-full'
 
 // Content container
-className = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+className = 'container mx-auto px-4 sm:px-6 lg:px-8'
 
 // Narrow container for forms
 className = 'max-w-2xl mx-auto px-4'

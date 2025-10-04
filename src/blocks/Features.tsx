@@ -57,13 +57,13 @@ const Features: React.FC<FeaturesProps> = ({
   }
 
   return (
-    <section className="bg-white mx-auto max-w-screen-xl py-20 md:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+    <section className="bg-white mx-auto container py-20 md:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
       <motion.div
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
-        className="max-w-screen-xl mx-auto grid md:grid-cols-3 gap-12 text-center"
+        className="container mx-auto grid md:grid-cols-3 gap-12 text-center"
       >
         {features.map((feature, index) => (
           <motion.div key={index} variants={itemVariants}>

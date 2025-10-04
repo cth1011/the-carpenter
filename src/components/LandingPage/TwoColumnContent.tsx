@@ -46,7 +46,7 @@ export default function TwoColumnContent({
       ref={ref}
       className="bg-gray-100 py-20 md:py-32 px-4 sm:px-6 lg:px-8"
     >
-      <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center">
         <motion.div
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}

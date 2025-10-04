@@ -13,10 +13,7 @@ const HeroBlock: Block = {
       type: 'text',
       required: true,
     },
-    {
-      name: 'text',
-      type: 'text',
-    },
+
     {
       name: 'image',
       type: 'upload',

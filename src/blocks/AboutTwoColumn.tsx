@@ -36,7 +36,7 @@ const AboutTwoColumn: React.FC<AboutTwoColumnProps> = ({
   }
   return (
     <section className={bgColorClasses[backgroundColor]}>
-      <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+      <div className="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-stretch">
         <div
           className={`text-center md:text-left px-4 sm:px-6 lg:px-8 py-16 md:py-20 flex flex-col justify-center ${
             imagePosition === 'left' ? 'md:order-last' : ''
