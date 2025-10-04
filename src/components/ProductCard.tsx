@@ -39,9 +39,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
           {/* Quick View Button Overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="text-center  py-6 px-4 w-full uppercase text-xs font-semibold tracking-wider transition-colors duration-300 bg-primary text-white">
+            <button className="text-center py-6 px-4 w-full uppercase text-xs font-semibold tracking-wider bg-white text-black hover:bg-primary hover:text-white transition-colors duration-500">
               Quick View
-            </div>
+            </button>
           </div>
         </div>
 
