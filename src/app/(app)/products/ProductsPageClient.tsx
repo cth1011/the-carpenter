@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/pagination'
 import { Skeleton } from '@/components/ui/skeleton'
 import { usePagination, DOTS } from '@/hooks/usePagination'
-import { Product } from '@/payload-types'
+import { Product, Category } from '@/payload-types'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function ProductsPageClient() {
@@ -24,8 +24,8 @@ export default function ProductsPageClient() {
   const searchParams = useSearchParams()
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [categories, setCategories] = useState<any[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  const [categoriesLoading, setCategoriesLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(1)
   const [totalDocs, setTotalDocs] = useState(0)
   const pageSize = 12
@@ -72,13 +72,15 @@ export default function ProductsPageClient() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('/api/categories')
+        const response = await fetch('/api/categories?limit=100')
         if (response.ok) {
           const data = await response.json()
           setCategories(data.docs || [])
         }
       } catch (error) {
         console.error('Error fetching categories:', error)
+      } finally {
+        setCategoriesLoading(false)
       }
     }
     fetchCategories()
@@ -102,7 +104,11 @@ export default function ProductsPageClient() {
       if (localSearchTerm !== searchTerm) {
         if (localSearchTerm.length === 0 || localSearchTerm.length >= 3) {
           const params = new URLSearchParams(searchParams)
-          params.set('search', localSearchTerm)
+          if (localSearchTerm) {
+            params.set('search', localSearchTerm)
+          } else {
+            params.delete('search')
+          }
           params.set('page', '1')
           router.replace(`?${params.toString()}`)
         }
@@ -136,76 +142,49 @@ export default function ProductsPageClient() {
 
 
         {/* Filters and Search */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              Filters & Search
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-4">
-              {/* Search */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search doors..."
-                  value={localSearchTerm}
-                  onChange={(e) => setLocalSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* Category Filter */}
-              <select
-                value={selectedCategory}
-                onChange={(e) => handleCategoryChange(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-              >
-                <option value="all">All Categories</option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-
-              {/* View Mode Toggle */}
-              <div className="flex gap-2">
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setViewMode('grid')}
-                >
-                  <Grid className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'list' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setViewMode('list')}
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-              </div>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 md:items-center">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search doors..."
+                value={localSearchTerm}
+                onChange={(e) => setLocalSearchTerm(e.target.value)}
+                className="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-70 disabled:cursor-not-allowed"
+                disabled={loading}
+              />
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-gray-600">
-            Showing {products.length} of {totalDocs} products
-          </p>
+            <select
+              value={selectedCategory}
+              onChange={(e) => handleCategoryChange(e.target.value)}
+              className="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-70 disabled:cursor-not-allowed"
+              disabled={categoriesLoading || loading}
+            >
+              <option value="all">All Categories</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <p className="text-gray-500 text-sm h-5 flex items-center">
+              {loading ? (
+                <Skeleton className="h-4 w-24" />
+              ) : (
+                <>
+                  {totalDocs} {totalDocs === 1 ? 'product' : 'products'}
+                </>
+              )}
+            </p>
+          </div>
         </div>
 
         {/* Products Grid */}
         <div
-          className={
-            viewMode === 'grid'
-              ? 'grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-              : 'space-y-4'
-          }
+          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
           {loading ? (
             Array.from({ length: pageSize }).map((_, i) => (
@@ -243,64 +222,66 @@ export default function ProductsPageClient() {
             ))
           )}
         </div>
-        <div className="mt-8">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  href={`?page=${currentPage - 1}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handlePageChange(currentPage - 1)
-                  }}
-                  className={
-                    currentPage === 1
-                      ? 'pointer-events-none opacity-50'
-                      : undefined
+        {totalPages > 1 && (
+          <div className="mt-8">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href={`?page=${currentPage - 1}`}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handlePageChange(currentPage - 1)
+                    }}
+                    className={
+                      currentPage === 1
+                        ? 'pointer-events-none opacity-50'
+                        : undefined
+                    }
+                  />
+                </PaginationItem>
+                {paginationRange.map((pageNumber, index) => {
+                  if (pageNumber === DOTS) {
+                    return (
+                      <PaginationItem key={index}>
+                        <PaginationEllipsis />
+                      </PaginationItem>
+                    )
                   }
-                />
-              </PaginationItem>
-              {paginationRange.map((pageNumber, index) => {
-                if (pageNumber === DOTS) {
+
                   return (
                     <PaginationItem key={index}>
-                      <PaginationEllipsis />
+                      <PaginationLink
+                        href={`?page=${pageNumber}`}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          handlePageChange(pageNumber as number)
+                        }}
+                        isActive={pageNumber === currentPage}
+                      >
+                        {pageNumber}
+                      </PaginationLink>
                     </PaginationItem>
                   )
-                }
-
-                return (
-                  <PaginationItem key={index}>
-                    <PaginationLink
-                      href={`?page=${pageNumber}`}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        handlePageChange(pageNumber as number)
-                      }}
-                      isActive={pageNumber === currentPage}
-                    >
-                      {pageNumber}
-                    </PaginationLink>
-                  </PaginationItem>
-                )
-              })}
-              <PaginationItem>
-                <PaginationNext
-                  href={`?page=${currentPage + 1}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handlePageChange(currentPage + 1)
-                  }}
-                  className={
-                    currentPage === totalPages
-                      ? 'pointer-events-none opacity-50'
-                      : undefined
-                  }
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
+                })}
+                <PaginationItem>
+                  <PaginationNext
+                    href={`?page=${currentPage + 1}`}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handlePageChange(currentPage + 1)
+                    }}
+                    className={
+                      currentPage === totalPages
+                        ? 'pointer-events-none opacity-50'
+                        : undefined
+                    }
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+        )}
       </div>
     </div>
   )

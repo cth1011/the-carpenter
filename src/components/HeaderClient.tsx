@@ -111,10 +111,6 @@ export default function HeaderClient({ header }: { header: Header }) {
 
           <div className="flex-1 flex items-center justify-end space-x-2">
             <div className="hidden md:flex items-center space-x-2">
-              <IconWrapper className={iconClasses}>
-                <Search className="w-5 h-5" />
-                <span className="sr-only">Search</span>
-              </IconWrapper>
               <Link href="/quotation">
                 <IconWrapper className={iconClasses}>
                   <div className="relative">

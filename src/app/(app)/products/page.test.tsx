@@ -106,7 +106,7 @@ describe('ProductsPage', () => {
     expect(mockFetch).toHaveBeenCalledWith(
       '/api/public/products?page=1&limit=12&depth=2'
     )
-    expect(mockFetch).toHaveBeenCalledWith('/api/categories')
+    expect(mockFetch).toHaveBeenCalledWith('/api/categories?limit=100')
   })
 
   it('displays loading state while fetching data', async () => {
@@ -131,7 +131,7 @@ describe('ProductsPage', () => {
     render(<ProductsPageClient />)
 
     // Should show loading state (you might need to adjust this selector based on your Skeleton component)
-    expect(screen.getByText(/showing/i)).toBeInTheDocument()
+    expect(screen.getByText('0 products')).toBeInTheDocument()
 
     // Wait for loading to complete
     await waitFor(
@@ -229,47 +229,6 @@ describe('ProductsPage', () => {
     expect(mockRouter.replace).toHaveBeenCalledWith('?page=2')
   })
 
-  it('toggles between grid and list view modes', async () => {
-    mockFetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockProductsResponse,
-      })
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockCategoriesResponse,
-      })
-
-    render(<ProductsPageClient />)
-
-    await waitFor(() => {
-      expect(screen.getByTestId('product-1')).toBeInTheDocument()
-    })
-
-    // Find the products container and check initial grid layout
-    const productsContainer = screen.getByTestId('product-1').parentElement
-    expect(productsContainer).toHaveClass('grid')
-
-    // Click list view button (look for the List icon button)
-    const buttons = screen.getAllByRole('button')
-    // The list button should be the second view mode button
-    const listButton = buttons.find(
-      (btn) =>
-        btn.querySelector('svg') &&
-        !btn.textContent?.includes('Grid') &&
-        btn.getAttribute('data-variant') === 'outline'
-    )
-
-    if (listButton) {
-      fireEvent.click(listButton)
-
-      // After clicking, the layout should change
-      await waitFor(() => {
-        expect(productsContainer).toHaveClass('space-y-4')
-      })
-    }
-  })
-
   it('displays "no products" message when no results found', async () => {
     const emptyResponse = {
       docs: [],
@@ -359,7 +318,7 @@ describe('ProductsPage', () => {
 
     // Should show products count as 0 when there's an error
     await waitFor(() => {
-      expect(screen.getByText('Showing 0 of 0 products')).toBeInTheDocument()
+      expect(screen.getByText('0 products')).toBeInTheDocument()
     })
 
     expect(consoleSpy).toHaveBeenCalledWith(
@@ -423,7 +382,7 @@ describe('ProductsPage', () => {
     render(<ProductsPageClient />)
 
     await waitFor(() => {
-      expect(screen.getByText('Showing 2 of 2 products')).toBeInTheDocument()
+      expect(screen.getByText('2 products')).toBeInTheDocument()
     })
   })
 
