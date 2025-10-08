@@ -26,7 +26,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Company Info */}
           <div className="lg:col-span-3">
-            <h3 className="text-xl font-black tracking-wide uppercase text-gray-900">
+            <h3 className="text-xl font-black tracking-wide uppercase text-primary">
               {companyName}
             </h3>
             <p className="mt-3 text-sm text-gray-600 leading-relaxed">

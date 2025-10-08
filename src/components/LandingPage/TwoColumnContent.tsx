@@ -53,7 +53,7 @@ export default function TwoColumnContent({
           variants={textVariants}
           className="text-center md:text-left"
         >
-          <h2 className="text-4xl text-black md:text-6xl font-black uppercase tracking-tight leading-tight">
+          <h2 className="text-4xl text-primary md:text-6xl font-black uppercase tracking-tight leading-tight">
             {title || 'Half a Century of Craft'}
           </h2>
           <p className="mt-6 text-gray-600 max-w-md mx-auto md:mx-0">

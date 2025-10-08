@@ -68,8 +68,7 @@ export default function HeaderClient({ header }: { header: Header }) {
     ? 'text-black hover:text-black'
     : 'text-white hover:!text-white'
 
-  const logoClasses = isSolid ? 'text-black' : 'text-white'
-  const logoIconClasses = isSolid ? 'invert-0' : 'invert'
+  const logoClasses = isSolid ? 'text-primary' : 'text-white'
   const underlineClasses = isSolid ? 'bg-black' : 'bg-white'
 
   return (
@@ -81,12 +80,14 @@ export default function HeaderClient({ header }: { header: Header }) {
               href="/"
               className="flex items-end space-x-2 text-xl font-black tracking-wide uppercase"
             >
-              <Image
-                src={logo}
-                alt="The Carpenter Logo"
-                width={32}
-                height={32}
-                className={`w-8 h-8 ${logoIconClasses}`}
+              <div
+                className={`w-8 h-8 ${isSolid ? 'bg-primary' : 'bg-white'}`}
+                style={{
+                  maskImage: `url(${logo.src})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                }}
               />
               <span className={logoClasses}>{logoText?.toUpperCase()}</span>
             </Link>
