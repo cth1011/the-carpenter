@@ -6,11 +6,12 @@ import { Inter as FontSans } from 'next/font/google'
 import React from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer/Footer'
-import { getPayload } from 'payload'
+import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
   title: 'The Carpenter - Custom Doors & Woodwork',
-  description: 'Discover high-quality custom doors and exquisite woodwork from The Carpenter. Browse our catalog and request a quotation for your next project.',
+  description:
+    'Discover high-quality custom doors and exquisite woodwork from The Carpenter. Browse our catalog and request a quotation for your next project.',
 }
 
 type LayoutProps = {
@@ -35,7 +36,10 @@ const Layout = async ({ children }: LayoutProps) => {
       >
         <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            {children}
+            <Toaster richColors position="bottom-right" />
+          </main>
           <Footer />
         </div>
       </body>
