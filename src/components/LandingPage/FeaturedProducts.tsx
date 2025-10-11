@@ -52,7 +52,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { current } = scrollContainerRef
-      const scrollAmount = current.clientWidth / 2
+      const scrollAmount = current.clientWidth
       current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -73,7 +73,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
 
           <div className="flex items-center gap-4">
             <Link href="/products">
-              <span className="text-sm font-medium text-gray-600 uppercase tracking-wider hover:text-gray-900 transition-colors">
+              <span className="hidden md:inline text-sm font-medium text-gray-600 uppercase tracking-wider hover:text-gray-900 transition-colors">
                 Shop Customer Favorites
               </span>
             </Link>
@@ -99,12 +99,12 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
         {/* Products Carousel */}
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto gap-6 pb-4 -mb-4 scrollbar-hide"
+          className="flex overflow-x-auto gap-6 pb-4 -mb-4 scrollbar-hide snap-x snap-mandatory"
         >
           {validProducts.map((product) => (
             <div
               key={product.id}
-              className="flex-shrink-0 w-full md:w-1/2 lg:w-1/4"
+              className="flex-shrink-0 w-full md:w-1/2 lg:w-1/4 snap-start"
             >
               <ProductCard product={product} />
             </div>
