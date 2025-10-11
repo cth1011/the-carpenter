@@ -51,10 +51,21 @@ export default function HeaderClient({ header }: { header: Header }) {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [lastScrollY])
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
 
   const isSolid = !isHomePage || scrolled
 
-  const headerClasses = `w-full z-50 transition-all duration-300 ${
+  const headerClasses = `w-full z-40 transition-all duration-300 ${
     isHomePage ? 'fixed top-0' : 'sticky top-0'
   } ${isSolid ? 'bg-white' : 'bg-transparent'} ${
     visible ? 'translate-y-0' : '-translate-y-full'
@@ -139,7 +150,7 @@ export default function HeaderClient({ header }: { header: Header }) {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-40 pt-16">
+        <div className="md:hidden fixed inset-0 bg-white z-50 pt-16 h-screen">
           <div className="absolute top-2 right-2">
             <IconWrapper
               className="text-black"
@@ -149,7 +160,7 @@ export default function HeaderClient({ header }: { header: Header }) {
               <span className="sr-only">Close menu</span>
             </IconWrapper>
           </div>
-          <nav className="flex flex-col items-center space-y-8 pt-8">
+          <nav className="flex flex-col z-50 bg-white items-center space-y-8 pt-8">
             {navLinks?.map((navLink, index) => (
               <div key={index} className="text-2l font-medium text-black">
                 <Link
