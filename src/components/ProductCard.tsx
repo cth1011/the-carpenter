@@ -12,14 +12,14 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
-  const mainImage = product.legacyImageUrl as string
+  const mainImage = product.productImages?.[0]?.image as Media
   const hoverImage = product.productImages?.[1]?.image as Media
 
   const imageUrl =
     isHovered && hoverImage?.url
       ? hoverImage.url
-      : mainImage || '/placeholder-door.svg'
-  const imageAlt = mainImage || product.name
+      : mainImage?.url || '/placeholder-door.svg'
+  const imageAlt = mainImage?.alt || product.name
 
   return (
     <Link href={`/products/${product.id}`} className="block group h-full">

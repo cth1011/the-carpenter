@@ -186,7 +186,7 @@ export default function ProductDetailPage() {
                 src={mainImage}
                 alt={imageAlt}
                 fill
-                className="object-fit bg-white"
+                className="object-contain bg-white"
                 priority
               />
             </div>
