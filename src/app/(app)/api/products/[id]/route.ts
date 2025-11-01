@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getPayload } from 'payload'
+import { getCachedPayload } from '@/payloadClient'
 import config from '@/payload.config'
 
 export async function GET(
@@ -8,9 +8,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params
-    const payload = await getPayload({
-      config,
-    })
+    const payload = await getCachedPayload()
 
     const product = await payload.findByID({
       collection: 'products',

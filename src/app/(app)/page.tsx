@@ -4,14 +4,14 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight } from 'lucide-react'
 import Features from '@/blocks/Features'
-import { getPayload } from 'payload'
+import { getCachedPayload } from '@/payloadClient'
 import config from '@payload-config'
 import { LandingPageHero } from '@/components/LandingPage/LandingPageHero'
 import TwoColumnContent from '@/components/LandingPage/TwoColumnContent'
 import FeaturedProducts from '@/components/LandingPage/FeaturedProducts'
 
 const Page: NextPage = async () => {
-  const payload = await getPayload({ config })
+  const payload = await getCachedPayload()
   const landingPage = await payload.findGlobal({
     slug: 'landing-page',
     depth: 2,

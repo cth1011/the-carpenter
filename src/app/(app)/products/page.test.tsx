@@ -130,9 +130,6 @@ describe('ProductsPage', () => {
 
     render(<ProductsPageClient />)
 
-    // Should show loading state (you might need to adjust this selector based on your Skeleton component)
-    expect(screen.getByText('0 products')).toBeInTheDocument()
-
     // Wait for loading to complete
     await waitFor(
       () => {

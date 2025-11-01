@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getPayload } from 'payload'
+import { getCachedPayload } from '@/payloadClient'
 import config from '@/payload.config'
 
 declare global {
@@ -8,9 +8,7 @@ declare global {
 
 export async function GET(request: NextRequest) {
   try {
-    const payload = await getPayload({
-      config,
-    })
+    const payload = await getCachedPayload()
 
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')

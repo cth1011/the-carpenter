@@ -1,8 +1,7 @@
 import { Suspense } from 'react'
 import ProductsPageClient from './ProductsPageClient'
 import { Skeleton } from '@/components/ui/skeleton'
-import { getPayload } from 'payload'
-import config from '@/payload.config'
+import { getCachedPayload } from '@/payloadClient'
 
 import BlockRenderer from '@/blocks/BlockRenderer'
 
@@ -28,7 +27,7 @@ const PageSkeleton = () => (
 )
 
 export default async function ProductsPage() {
-  const payload = await getPayload({ config })
+  const payload = await getCachedPayload()
   const productsPage = await payload.find({
     collection: 'pages',
     where: {

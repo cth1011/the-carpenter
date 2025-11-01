@@ -1,11 +1,10 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
+import { getCachedPayload } from '@/payloadClient'
 import ContactItem from './ContactItem'
 import FooterNavSection from './FooterNavSection'
 import FooterSocialLink from './FooterSocialLink'
 
 export default async function Footer() {
-  const payload = await getPayload({ config })
+  const payload = await getCachedPayload()
   const footer = await payload.findGlobal({
     slug: 'footer',
   })
@@ -51,12 +50,12 @@ export default async function Footer() {
           {/* Navigation Sections */}
           <div className="lg:col-span-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
-              {navSections?.map((navSection, index) => (
-                <FooterNavSection
+          {navSections?.map((navSection, index) => (
+              <FooterNavSection
                   key={index}
-                  title={navSection.title}
-                  navLinks={navSection.navLinks || []}
-                />
+                title={navSection.title}
+                navLinks={navSection.navLinks || []}
+              />
               ))}
             </div>
           </div>

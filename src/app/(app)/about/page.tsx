@@ -1,10 +1,10 @@
-import { getPayload } from 'payload'
+import { getCachedPayload } from '@/payloadClient'
 import config from '@/payload.config'
 import { notFound } from 'next/navigation'
 import { AboutPageClient } from './AboutPageClient'
 
 export default async function AboutPage() {
-  const payload = await getPayload({ config })
+  const payload = await getCachedPayload()
   const page = await payload.find({
     collection: 'pages',
     where: {
