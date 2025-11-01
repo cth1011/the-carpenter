@@ -35,10 +35,10 @@ const AboutTwoColumn: React.FC<AboutTwoColumnProps> = ({
     'dark-green': 'bg-[#234537]',
   }
   return (
-    <section className={bgColorClasses[backgroundColor]}>
-      <div className="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+    <section className={`${bgColorClasses[backgroundColor]} py-16 md:py-20`}>
+      <div className="container mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div
-          className={`text-center md:text-left px-4 sm:px-6 lg:px-8 py-16 md:py-20 flex flex-col justify-center ${
+          className={`text-center md:text-left px-4 sm:px-6 lg:px-8 flex flex-col justify-center ${
             imagePosition === 'left' ? 'md:order-last' : ''
           }`}
         >
@@ -49,7 +49,7 @@ const AboutTwoColumn: React.FC<AboutTwoColumnProps> = ({
         </div>
 
         <div
-          className={`relative min-h-[400px] md:min-h-[600px] ${
+          className={`relative aspect-[4/5] ${
             imagePosition === 'left' ? 'md:order-first' : ''
           }`}
         >
@@ -58,7 +58,6 @@ const AboutTwoColumn: React.FC<AboutTwoColumnProps> = ({
             alt={image?.alt || 'Image'}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </div>
