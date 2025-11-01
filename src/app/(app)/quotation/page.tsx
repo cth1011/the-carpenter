@@ -56,9 +56,17 @@ export default function QuotationPage() {
     }
 
     try {
-      // TODO: Replace with actual API endpoint
-      console.log('Submitting quotation:', payload)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const response = await fetch('/api/quotation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send quotation')
+      }
 
       toast.success('Quotation request sent!', {
         description: 'We’ll contact you within 1–2 business days.',

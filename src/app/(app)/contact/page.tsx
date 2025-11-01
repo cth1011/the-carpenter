@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react'
@@ -16,10 +17,10 @@ export default function ContactPage() {
   })
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,11 +28,21 @@ export default function ContactPage() {
     setIsSubmitting(true)
 
     try {
-      // Here you would typically send the contact form data to your backend
-      console.log('Contact form submitted:', formData)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
+
+      toast.success('Message sent!', {
+        description: 'Thank you for contacting us. We will get back to you soon.',
+      })
 
       // Reset form
       setFormData({
@@ -41,11 +52,11 @@ export default function ContactPage() {
         subject: '',
         message: '',
       })
-
-      alert('Thank you for your message! We will get back to you soon.')
     } catch (error) {
       console.error('Error submitting contact form:', error)
-      alert('There was an error sending your message. Please try again.')
+      toast.error('Something went wrong.', {
+        description: 'There was an error sending your message. Please try again.',
+      })
     } finally {
       setIsSubmitting(false)
     }

@@ -10,6 +10,7 @@ This project is an e-commerce website for "The Carpenter," a company that sells 
 - **Framework:** [Next.js](https://nextjs.org/)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI Components:** [ShadCN](httpss://ui.shadcn.com/)
+- **Notifications:** [Sonner](https://sonner.emilkowal.ski/)
 - **State Management:** [Zustand](https://zustand-demo.pmnd.rs/)
 - **Testing:** [Vitest](https://vitest.dev/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
@@ -83,3 +84,7 @@ Integration tests are used to test how multiple components work together. This i
 
 - **What to test:**
   - The entire quotation flow, from adding a product to the quotation to seeing the updated count in the header.
+
+## Block Development
+
+When editing or removing fields from a block in the `src/blocks` directory, you must also update the corresponding block definition in the `src/collections` or `src/globals` directories. This ensures that the CMS and the frontend components are in sync.
