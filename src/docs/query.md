@@ -20,17 +20,18 @@ const afterChangeHook: CollectionAfterChangeHook = async ({ req: { payload } }) 
 };
 ```
 
-### b) Importing `getPayload`
+### b) Using `getCachedPayload`
 
-When you need to access Payload outside of the config functions, you can import `getPayload` from the `payload` package.
+When you need to access Payload outside of the config functions, you should use the cached Payload client to improve performance. A `getCachedPayload` utility is provided in `src/payloadClient.ts`.
 
 ```typescript
-import { getPayload } from 'payload';
-import config from '@payload-config';
+import { getCachedPayload } from '@/payloadClient';
 
-const payload = await getPayload({ config });
+const payload = await getCachedPayload();
 // Use payload to query your data
 ```
+
+This will reuse the payload client instance instead of creating a new one on every request.
 
 ## 2. Choosing the Right Query Method
 
