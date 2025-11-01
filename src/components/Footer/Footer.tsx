@@ -22,16 +22,16 @@ export default async function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-200 text-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
-          <div className="lg:col-span-3">
-            <h3 className="text-xl font-black tracking-wide uppercase text-primary">
+          <div className="md:col-span-1">
+            <h3 className="text-xl font-black tracking-wide uppercase text-primary mb-4">
               {companyName}
             </h3>
-            <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm text-gray-600 leading-relaxed">
               {companyDescription}
             </p>
-            <div className="mt-8">
+            <div className="mt-6">
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4">
                 CONNECT WITH US
               </h4>
@@ -48,30 +48,27 @@ export default async function Footer() {
           </div>
 
           {/* Navigation Sections */}
-          <div className="lg:col-span-6">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
           {navSections?.map((navSection, index) => (
+            <div key={index} className="md:col-span-1">
               <FooterNavSection
-                  key={index}
                 title={navSection.title}
                 navLinks={navSection.navLinks || []}
               />
-              ))}
             </div>
-          </div>
+          ))}
 
           {/* Contact Info */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="md:col-span-1 space-y-6">
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-3">
-                Address
+                ADDRESS
               </h4>
               <p className="text-sm text-gray-600 leading-relaxed">{address}</p>
             </div>
 
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-3">
-                Contacts
+                CONTACTS
               </h4>
               <div className="space-y-2">
                 {contacts?.map((contact, index) => (
@@ -86,7 +83,7 @@ export default async function Footer() {
 
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-3">
-                Working Hours
+                WORKING HOURS
               </h4>
               <p className="text-sm text-gray-600 leading-relaxed">
                 {workHours}
