@@ -14,5 +14,14 @@ export const Categories: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'sort_order',
+      type: 'number',
+      required: true,
+      defaultValue: 0,
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 }

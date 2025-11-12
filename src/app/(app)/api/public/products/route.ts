@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
       page,
       limit,
       depth: 2,
+      sort: 'category.sort_order'
     }
 
     // Add category filter if provided

@@ -260,6 +260,7 @@ export interface Media {
 export interface Category {
   id: number;
   name: string;
+  sort_order: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -586,6 +587,7 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
+  sort_order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -72,7 +72,9 @@ export default function ProductsPageClient() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('/api/categories?limit=100')
+        const response = await fetch(
+          '/api/categories?limit=100&sort=sort_order'
+        )
         if (response.ok) {
           const data = await response.json()
           setCategories(data.docs || [])
@@ -139,8 +141,6 @@ export default function ProductsPageClient() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
-
-
         {/* Filters and Search */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <div className="flex flex-col sm:flex-row gap-4 md:items-center">
@@ -183,9 +183,7 @@ export default function ProductsPageClient() {
         </div>
 
         {/* Products Grid */}
-        <div
-          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {loading ? (
             Array.from({ length: pageSize }).map((_, i) => (
               <div
