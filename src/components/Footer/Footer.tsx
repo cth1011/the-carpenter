@@ -28,7 +28,7 @@ export default async function Footer() {
             <h3 className="text-xl font-black tracking-wide uppercase text-primary mb-4">
               {companyName}
             </h3>
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-base text-gray-600 leading-relaxed">
               {companyDescription}
             </p>
             <div className="mt-6">
@@ -63,14 +63,16 @@ export default async function Footer() {
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-3">
                 ADDRESS
               </h4>
-              <p className="text-sm text-gray-600 leading-relaxed">{address}</p>
+              <p className="text-base text-gray-600 leading-relaxed">
+                {address}
+              </p>
             </div>
 
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-3">
                 CONTACTS
               </h4>
-              <div className="space-y-2">
+              <div className="space-y-2 text">
                 {contacts?.map((contact, index) => (
                   <ContactItem
                     key={index}
@@ -83,9 +85,9 @@ export default async function Footer() {
 
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-3">
-                WORKING HOURS
+                BUSINESS HOURS
               </h4>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-base text-gray-600 leading-relaxed">
                 {workHours}
               </p>
             </div>
@@ -93,7 +95,7 @@ export default async function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-gray-200 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-base text-gray-500">
             &copy; {new Date().getFullYear()} {companyName}. All Rights
             Reserved.
           </p>
