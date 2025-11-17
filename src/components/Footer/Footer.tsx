@@ -72,7 +72,7 @@ export default async function Footer() {
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-3">
                 CONTACTS
               </h4>
-              <div className="space-y-2 text">
+              <div className="space-y-2 text-base">
                 {contacts?.map((contact, index) => (
                   <ContactItem
                     key={index}
