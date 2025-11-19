@@ -1,14 +1,15 @@
 'use client'
 
+import { useState } from 'react'
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible'
 import { ChevronDown } from 'lucide-react'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import { useInView } from 'react-intersection-observer'
-import { easeIn } from 'motion'
+import { easeIn, easeInOut } from 'motion'
 
 interface FaqItem {
   id?: string | null
@@ -28,6 +29,7 @@ const Faq: React.FC<FaqProps> = ({
   faqs = [],
 }) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [openItems, setOpenItems] = useState<Record<number, boolean>>({})
 
   const containerVariants = {
     hidden: {},
@@ -66,14 +68,52 @@ const Faq: React.FC<FaqProps> = ({
         >
           {faqs.map((faq, index) => (
             <motion.div key={faq.id || index} variants={itemVariants}>
-              <Collapsible className="border-b">
+              <Collapsible
+                className="border-b"
+                open={openItems[index]}
+                onOpenChange={(isOpen) =>
+                  setOpenItems((prev) => ({ ...prev, [index]: isOpen }))
+                }
+              >
                 <CollapsibleTrigger className="flex justify-between items-center w-full py-4 text-left font-semibold text-lg">
                   <span>{faq.question}</span>
-                  <ChevronDown className="h-5 w-5 transition-transform duration-300 [&[data-state=open]]:rotate-180" />
+                  <motion.div
+                    animate={{ rotate: openItems[index] ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: easeInOut }}
+                  >
+                    <ChevronDown className="h-5 w-5" />
+                  </motion.div>
                 </CollapsibleTrigger>
-                <CollapsibleContent className="overflow-hidden pt-2 pb-4 text-gray-700 prose data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
-                  {faq.answer}
-                </CollapsibleContent>
+                <AnimatePresence initial={false}>
+                  {openItems[index] && (
+                    <CollapsibleContent forceMount asChild>
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{
+                          height: 'auto',
+                          opacity: 1,
+                          transition: {
+                            height: { duration: 0.3, ease: easeInOut },
+                            opacity: { duration: 0.25, ease: easeInOut },
+                          },
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                          transition: {
+                            height: { duration: 0.3, ease: easeInOut },
+                            opacity: { duration: 0.2, ease: easeInOut },
+                          },
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-2 pb-4 text-gray-700 prose">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    </CollapsibleContent>
+                  )}
+                </AnimatePresence>
               </Collapsible>
             </motion.div>
           ))}
