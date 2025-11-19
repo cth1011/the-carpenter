@@ -112,6 +112,41 @@ const RichTextBlock: Block = {
   ],
 }
 
+
+const Faq: Block = {
+  slug: 'faq',
+  labels: {
+    singular: 'FAQ',
+    plural: 'FAQs',
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      defaultValue: 'Frequently Asked Questions',
+    },
+    {
+      name: 'faqs',
+      type: 'array',
+      label: 'Frequently Asked Questions',
+      minRows: 1,
+      fields: [
+        {
+          name: 'question',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'answer',
+          type: 'textarea',
+          required: true,
+        },
+      ],
+    },
+  ],
+}
+
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
@@ -145,7 +180,7 @@ export const Pages: CollectionConfig = {
     {
       name: 'layout',
       type: 'blocks',
-      blocks: [HeroBlock, TwoColumnBlock, FeaturesBlock, RichTextBlock],
+      blocks: [HeroBlock, TwoColumnBlock, FeaturesBlock, RichTextBlock, Faq],
     },
   ],
 }

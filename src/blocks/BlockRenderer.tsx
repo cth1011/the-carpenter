@@ -2,11 +2,13 @@ import { Page } from '@/payload-types'
 import PageHero from './PageHero'
 import AboutTwoColumn from './AboutTwoColumn'
 import Features from './Features'
+import Faq from './Faq'
 
 const blockComponents = {
   hero: PageHero,
   twoColumn: AboutTwoColumn,
   features: Features,
+  faq: Faq,
 } as const
 
 const BlockRenderer = ({ layout, pageTitle }: { layout: Page['layout']; pageTitle?: string }) => {
