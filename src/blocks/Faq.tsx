@@ -6,7 +6,6 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible'
 import { ChevronDown } from 'lucide-react'
-import type { Faq as FaqType } from '@/payload-types'
 import { motion } from 'motion/react'
 import { useInView } from 'react-intersection-observer'
 import { easeIn } from 'motion'
@@ -17,7 +16,7 @@ interface FaqItem {
   answer: string
 }
 
-export interface FaqProps extends Omit<FaqType, 'id' | 'blockType' | 'blockName'> {
+export interface FaqProps {
   blockType: 'faq'
   blockName?: string
   title?: string
