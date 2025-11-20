@@ -3,12 +3,16 @@ import PageHero from './PageHero'
 import AboutTwoColumn from './AboutTwoColumn'
 import Features from './Features'
 import Faq from './Faq'
+import ContactBlock from './ContactBlock'
+import RichTextBlock from './RichTextBlock'
 
 const blockComponents = {
   hero: PageHero,
   twoColumn: AboutTwoColumn,
   features: Features,
   faq: Faq,
+  contact: ContactBlock,
+  richText: RichTextBlock,
 } as const
 
 const BlockRenderer = ({ layout, pageTitle }: { layout: Page['layout']; pageTitle?: string }) => {

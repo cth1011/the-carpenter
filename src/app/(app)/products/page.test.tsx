@@ -106,7 +106,7 @@ describe('ProductsPage', () => {
     expect(mockFetch).toHaveBeenCalledWith(
       '/api/public/products?page=1&limit=12&depth=2'
     )
-    expect(mockFetch).toHaveBeenCalledWith('/api/categories?limit=100')
+    expect(mockFetch).toHaveBeenCalledWith('/api/categories?limit=100&sort=sort_order')
   })
 
   it('displays loading state while fetching data', async () => {

@@ -15,7 +15,9 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "vitest",
-    "migrate": "tsx src/scripts/migrate.ts"
+    "migrate": "tsx src/scripts/migrate.ts",
+    "migrate:images": "tsx src/scripts/migrate-images.ts",
+    "rename:images": "tsx src/scripts/rename-images.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.58.0",
@@ -27,6 +29,7 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@tailwindcss/typography": "^0.5.19",
     "@testing-library/user-event": "^14.6.1",
     "@types/nodemailer": "^7.0.1",
     "class-variance-authority": "^0.7.1",

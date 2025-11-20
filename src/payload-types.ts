@@ -338,6 +338,13 @@ export interface Page {
             blockName?: string | null;
             blockType: 'faq';
           }
+        | {
+            title: string;
+            backgroundColor?: ('white' | 'light-gray') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -601,6 +608,14 @@ export interface PagesSelect<T extends boolean = true> {
                     answer?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        contact?:
+          | T
+          | {
+              title?: T;
+              backgroundColor?: T;
               id?: T;
               blockName?: T;
             };

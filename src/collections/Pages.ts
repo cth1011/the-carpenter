@@ -147,6 +147,28 @@ const Faq: Block = {
   ],
 }
 
+const ContactBlock: Block = {
+  slug: 'contact',
+  labels: {
+    singular: 'Contact Form',
+    plural: 'Contact Forms',
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      defaultValue: 'Send us a Message',
+    },
+    {
+      name: 'backgroundColor',
+      type: 'select',
+      options: ['white', 'light-gray'],
+      defaultValue: 'light-gray',
+    },
+  ],
+}
+
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
@@ -180,7 +202,7 @@ export const Pages: CollectionConfig = {
     {
       name: 'layout',
       type: 'blocks',
-      blocks: [HeroBlock, TwoColumnBlock, FeaturesBlock, RichTextBlock, Faq],
+      blocks: [HeroBlock, TwoColumnBlock, FeaturesBlock, RichTextBlock, Faq, ContactBlock],
     },
   ],
 }
