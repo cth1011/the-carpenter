@@ -29,3 +29,32 @@ export async function GET(
     )
   }
 }
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params
+    const body = await request.json()
+    const payload = await getCachedPayload()
+
+    const updatedProduct = await payload.update({
+      collection: 'products',
+      id,
+      data: body,
+    })
+
+    if (!updatedProduct) {
+      return NextResponse.json({ error: 'Product not found or update failed' }, { status: 404 })
+    }
+
+    return NextResponse.json(updatedProduct)
+  } catch (error) {
+    console.error('Error updating product:', error)
+    return NextResponse.json(
+      { error: 'Failed to update product' },
+      { status: 500 }
+    )
+  }
+}
