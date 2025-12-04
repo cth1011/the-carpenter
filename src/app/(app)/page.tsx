@@ -5,8 +5,6 @@ import { LandingPageHero } from '@/components/LandingPage/LandingPageHero'
 import TwoColumnContent from '@/components/LandingPage/TwoColumnContent'
 import FeaturedProducts from '@/components/LandingPage/FeaturedProducts'
 
-export const dynamic = 'force-dynamic'
-
 const Page: NextPage = async () => {
   const payload = await getCachedPayload()
   const landingPage = await payload.findGlobal({
