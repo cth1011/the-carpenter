@@ -24,7 +24,6 @@ export async function POST(request: Request) {
         'EMAIL_SERVER_USER',
         'EMAIL_SERVER_PASSWORD',
         'EMAIL_FROM',
-        'EMAIL_TO',
       ]
       const missingEnvVars = requiredEnvVars.filter(
         envVar => !process.env[envVar],
@@ -76,8 +75,8 @@ export async function POST(request: Request) {
 
     // Send internal notification
     const internalMailOptions = {
-      from: `"${data.name}" <${process.env.EMAIL_FROM || 'noreply@example.com'}>`,
-      to: process.env.EMAIL_TO,
+      from: `"The Carpenter Website" <${process.env.EMAIL_FROM || 'noreply@example.com'}>`,
+      to: process.env.EMAIL_TO || "thecarpenterwood@yahoo.com",
       replyTo: data.email,
       subject: `New Contact Form Submission: ${data.subject}`,
       text: getContactFormInternalText(data),

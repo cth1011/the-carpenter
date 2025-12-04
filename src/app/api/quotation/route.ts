@@ -28,7 +28,6 @@ export async function POST(request: Request) {
         'EMAIL_SERVER_USER',
         'EMAIL_SERVER_PASSWORD',
         'EMAIL_FROM',
-        'EMAIL_TO',
       ]
       const missingEnvVars = requiredEnvVars.filter(
         envVar => !process.env[envVar],
@@ -85,10 +84,9 @@ export async function POST(request: Request) {
 
     // 3. Define mail options
     const mailOptions = {
-      from: `"The Carpenter Website" <${
-        process.env.EMAIL_FROM || 'noreply@thecarpenter.com'
-      }>`,
-      to: process.env.EMAIL_TO || customerInfo.email,
+      from: `"The Carpenter Website" <${process.env.EMAIL_FROM}>`,
+      replyTo: customerInfo.email,
+      to: process.env.EMAIL_TO || "thecarpenterwood@yahoo.com",
       subject: `New Quotation Request from ${customerInfo.name}`,
       text: emailText,
       html: emailHtml,
