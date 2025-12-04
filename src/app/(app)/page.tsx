@@ -1,14 +1,11 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { ArrowRight } from 'lucide-react'
 import Features from '@/blocks/Features'
 import { getCachedPayload } from '@/payloadClient'
-import config from '@payload-config'
 import { LandingPageHero } from '@/components/LandingPage/LandingPageHero'
 import TwoColumnContent from '@/components/LandingPage/TwoColumnContent'
 import FeaturedProducts from '@/components/LandingPage/FeaturedProducts'
+
+export const dynamic = 'force-dynamic'
 
 const Page: NextPage = async () => {
   const payload = await getCachedPayload()
