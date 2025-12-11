@@ -45,9 +45,8 @@ export async function POST(request: Request) {
       }
 
       transporter = nodemailer.createTransport({
-        host: process.env.EMAIL_SERVER_HOST,
-        port: Number(process.env.EMAIL_SERVER_PORT) || 587,
-        secure: Number(process.env.EMAIL_SERVER_PORT) === 465,
+        service: "yahoo",
+        pool: true,
         auth: {
           user: process.env.EMAIL_SERVER_USER,
           pass: process.env.EMAIL_SERVER_PASSWORD,
@@ -85,7 +84,7 @@ export async function POST(request: Request) {
     // 3. Define mail options
     const mailOptions = {
       from: `"The Carpenter Website" <${process.env.EMAIL_FROM}>`,
-      replyTo: customerInfo.email,
+      // replyTo: customerInfo.email, // Kept commented out for stability with Yahoo
       to: process.env.EMAIL_TO || "thecarpenterwood@yahoo.com",
       subject: `New Quotation Request from ${customerInfo.name}`,
       text: emailText,
@@ -94,14 +93,6 @@ export async function POST(request: Request) {
 
     // 4. Send the internal notification email
     const internalInfo = await transporter.sendMail(mailOptions)
-
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Internal email sent: %s', internalInfo.messageId)
-      console.log(
-        'Internal email preview URL: %s',
-        nodemailer.getTestMessageUrl(internalInfo),
-      )
-    }
 
     // 5. Send the confirmation email to the customer
     const customerEmailHtml = getCustomerConfirmationHtml(customerInfo, items)
@@ -116,14 +107,6 @@ export async function POST(request: Request) {
     }
 
     const customerInfoEmail = await transporter.sendMail(customerMailOptions)
-
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Customer email sent: %s', customerInfoEmail.messageId)
-      console.log(
-        'Customer email preview URL: %s',
-        nodemailer.getTestMessageUrl(customerInfoEmail),
-      )
-    }
 
     return NextResponse.json(
       { message: 'Quotation request sent successfully!' },

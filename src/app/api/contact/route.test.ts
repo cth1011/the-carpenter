@@ -57,7 +57,6 @@ describe('POST /api/contact', () => {
     expect(internalEmail.to).toBe('test@internal.com')
     expect(internalEmail.subject).toContain('New Contact Form Submission: Question about products')
     expect(internalEmail.html).toContain('Hello, I have a question.')
-    expect(internalEmail.replyTo).toBe('jane.doe@customer.com')
 
     // 4. Inspect the customer confirmation email
     const customerEmail = sendMailMock.mock.calls[1][0]
