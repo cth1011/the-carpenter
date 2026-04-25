@@ -131,8 +131,8 @@ export default function HeaderClient({ header: initialHeader }: { header: Header
             ))}
           </nav>
 
-          <div className="flex-1 flex items-center justify-end space-x-2">
-            <div className="hidden md:flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <Link href="/quotation">
                 <IconWrapper className={iconClasses}>
                   <div className="relative">
