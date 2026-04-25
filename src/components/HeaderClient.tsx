@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useQuotationStore } from '@/store/quotation'
 import logo from '../../public/logo.svg'
 import { Header } from '@/payload-types'
+import { useLivePreview } from '@payloadcms/live-preview-react'
 
 const IconWrapper: React.FC<{
   children: React.ReactNode
@@ -19,7 +20,17 @@ const IconWrapper: React.FC<{
   </button>
 )
 
-export default function HeaderClient({ header }: { header: Header }) {
+export default function HeaderClient({ header: initialHeader }: { header: Header }) {
+  const { data: liveData } = useLivePreview<Header>({
+    initialData: initialHeader,
+    serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+    depth: 1,
+  })
+
+  // Ensure liveData is actually a Header (Payload's hook can sometimes return data from other hooks on the page)
+  const header = liveData && 'navLinks' in liveData ? liveData : initialHeader
+  console.log('Header data:', header)
+
   const { logoText, navLinks } = header
   const { getItemCount } = useQuotationStore()
   const [scrolled, setScrolled] = useState(false)

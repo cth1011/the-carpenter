@@ -17,10 +17,10 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
-    livePreview: {
-      url: 'http://localhost:3000',
-      globals: ['landing-page', 'header', 'footer'],
-    },
+      livePreview: {
+        url: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+        globals: ['landing-page', 'header', 'footer'],
+      },
   },
   collections: [Users, Posts, Products, Media, Pages, Categories],
   globals: [LandingPage, Header, Footer],

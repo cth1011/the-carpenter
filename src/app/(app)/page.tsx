@@ -1,9 +1,6 @@
 import type { NextPage } from 'next'
-import Features from '@/blocks/Features'
 import { getCachedPayload } from '@/payloadClient'
-import { LandingPageHero } from '@/components/LandingPage/LandingPageHero'
-import TwoColumnContent from '@/components/LandingPage/TwoColumnContent'
-import FeaturedProducts from '@/components/LandingPage/FeaturedProducts'
+import { LandingPageClient } from './LandingPageClient'
 
 const Page: NextPage = async () => {
   const payload = await getCachedPayload()
@@ -12,18 +9,7 @@ const Page: NextPage = async () => {
     depth: 2,
   })
 
-  return (
-    <div className="min-h-screen">
-      <LandingPageHero landingPage={landingPage} />
-      <TwoColumnContent twoColumnContent={landingPage.twoColumnContent} />
-      {landingPage.featuredProducts &&
-        landingPage.featuredProducts.length > 0 && (
-          <FeaturedProducts products={landingPage.featuredProducts} />
-        )}
-      {/* Features Section */}
-      <Features />
-    </div>
-  )
+  return <LandingPageClient initialLandingPage={landingPage} />
 }
 
 export default Page

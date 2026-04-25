@@ -176,7 +176,7 @@ export const Pages: CollectionConfig = {
     livePreview: {
       url: ({ data }) => {
         const baseUrl =
-          process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'
+          process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
         if (data.slug === 'home') {
           return baseUrl
         }

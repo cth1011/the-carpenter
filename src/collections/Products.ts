@@ -6,6 +6,13 @@ export const Products: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'category', 'productType', 'updatedAt'],
+    livePreview: {
+      url: ({ data }) => {
+        const baseUrl =
+          process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+        return `${baseUrl}/products/${data.id}`
+      },
+    },
   },
   access: {
     read: () => true,

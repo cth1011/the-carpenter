@@ -27,7 +27,7 @@ const fontSans = FontSans({
 
 const Layout = async ({ children }: LayoutProps) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',

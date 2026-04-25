@@ -6,11 +6,14 @@ import BlockRenderer from '@/blocks/BlockRenderer'
 import { notFound } from 'next/navigation'
 
 export function AboutPageClient({ page: initialPage }: { page: Page }) {
-  const { data } = useLivePreview<Page>({
+  const { data: liveData } = useLivePreview<Page>({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
     depth: 2,
     initialData: initialPage,
   })
+
+  // Ensure liveData is actually a Page
+  const data = liveData && 'layout' in liveData ? liveData : initialPage
 
   if (!data) {
     return notFound()

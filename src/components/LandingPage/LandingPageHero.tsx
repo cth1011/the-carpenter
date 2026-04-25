@@ -1,35 +1,29 @@
 'use client'
 
-import { useLivePreview } from '@payloadcms/live-preview-react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { LandingPage, Media } from '@/payload-types'
+import { LandingPage } from '@/payload-types'
 import LandingButton from '@/components/LandingPage/LandingButton'
 
-export function LandingPageHero({
-  landingPage: initialLandingPage,
-}: {
-  landingPage: LandingPage
-}) {
-  const { data: landingPage } = useLivePreview<LandingPage>({
-    initialData: initialLandingPage,
-    serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000',
-  })
-
-  const { hero } = landingPage
-  const backgroundImage = hero?.backgroundImage as Media
+export function LandingPageHero({ landingPage }: { landingPage: LandingPage }) {
+  const { hero } = landingPage || {}
+  const backgroundImage = hero?.backgroundImage
+  const imageUrl =
+    typeof backgroundImage === 'object' ? backgroundImage?.url : null
+  const imageAlt =
+    typeof backgroundImage === 'object'
+      ? backgroundImage?.alt
+      : 'Crafted wooden doors'
 
   return (
     <section className="relative h-[95vh] w-full">
-      {backgroundImage?.url && (
+      {imageUrl && (
         <Image
-          src={backgroundImage.url}
-          alt={backgroundImage.alt || 'Crafted wooden doors'}
+          src={imageUrl}
+          alt={imageAlt || 'Crafted wooden doors'}
           fill
           className="object-cover"
           priority
-          fetchPriority="high"
+          sizes="100vw"
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
