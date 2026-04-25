@@ -133,7 +133,7 @@ export default function HeaderClient({
             ))}
           </nav>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex-1 flex items-center justify-end space-x-2">
             <div className="flex items-center space-x-2">
               <Link href="/quotation">
                 <IconWrapper className={iconClasses}>
