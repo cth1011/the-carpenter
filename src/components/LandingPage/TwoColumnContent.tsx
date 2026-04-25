@@ -65,7 +65,11 @@ export default function TwoColumnContent({
               href={buttonLink || '/'}
               aria-label="Learn more about The Carpenter company"
             >
-              {buttonText || 'Learn More'}
+              {buttonText || (
+                <>
+                  Learn More <span className="sr-only">About The Carpenter</span>
+                </>
+              )}
             </Button>
           </div>
         </motion.div>
