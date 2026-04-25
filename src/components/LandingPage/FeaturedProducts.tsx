@@ -72,7 +72,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href="/products">
+            <Link href="/products" aria-label="Shop Customer Favorites">
               <span className="hidden md:inline text-sm font-medium text-gray-600 uppercase tracking-wider hover:text-gray-900 transition-colors">
                 Shop Customer Favorites
               </span>
@@ -81,6 +81,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
               <button
                 onClick={() => scroll('left')}
                 disabled={!canScroll.left}
+                aria-label="Scroll left"
                 className="p-2 rounded-full transition-colors group disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <ChevronLeft className="w-8 h-8 stroke-1 text-gray-500 transition-all duration-300 group-hover:-translate-x-1 group-hover:text-gray-900 group-disabled:translate-x-0 group-disabled:text-gray-500" />
@@ -88,6 +89,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
               <button
                 onClick={() => scroll('right')}
                 disabled={!canScroll.right}
+                aria-label="Scroll right"
                 className="p-2 rounded-full transition-colors group disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <ChevronRight className="w-8 h-8 stroke-1 text-gray-500 transition-all duration-300 group-hover:translate-x-1 group-hover:text-gray-900 group-disabled:translate-x-0 group-disabled:text-gray-500" />

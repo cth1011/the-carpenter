@@ -23,6 +23,7 @@ export function LandingPageHero({ landingPage }: { landingPage: LandingPage }) {
           fill
           className="object-cover"
           priority
+          fetchPriority="high"
           sizes="100vw"
         />
       )}
