@@ -119,14 +119,15 @@ export function ProductDetailClient({
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12 overflow-hidden">
           {/* Product Images */}
-          <div>
-            <div className="relative h-96 lg:h-[500px] mb-4">
+          <div className="w-full overflow-hidden">
+            <div className="relative h-64 sm:h-96 lg:h-[500px] mb-4 w-full">
               <Image
                 src={mainImage}
                 alt={imageAlt}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-contain bg-white"
                 priority
               />
@@ -157,6 +158,7 @@ export function ProductDetailClient({
                         ''
                       }
                       fill
+                      sizes="100px"
                       className="object-cover"
                     />
                   </button>

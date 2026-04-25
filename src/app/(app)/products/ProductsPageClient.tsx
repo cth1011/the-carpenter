@@ -139,19 +139,19 @@ export default function ProductsPageClient() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gray-50 py-8 overflow-hidden">
+      <div className="container mx-auto px-4 overflow-hidden">
         {/* Filters and Search */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-          <div className="flex flex-col sm:flex-row gap-4 md:items-center">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row gap-4 md:items-center w-full md:w-auto">
+            <div className="relative w-full sm:w-64">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search doors..."
                 value={localSearchTerm}
                 onChange={(e) => setLocalSearchTerm(e.target.value)}
-                className="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-70 disabled:cursor-not-allowed"
                 disabled={loading}
               />
             </div>
@@ -183,7 +183,7 @@ export default function ProductsPageClient() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {loading ? (
             Array.from({ length: pageSize }).map((_, i) => (
               <div
