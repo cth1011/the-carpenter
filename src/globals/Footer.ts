@@ -1,10 +1,14 @@
 import { GlobalConfig } from 'payload'
+import { revalidateLayout } from '../hooks/revalidateCache'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Footer',
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateLayout],
   },
   fields: [
     {

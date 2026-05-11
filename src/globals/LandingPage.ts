@@ -1,10 +1,14 @@
 import { GlobalConfig } from 'payload'
+import { revalidateLandingPage } from '../hooks/revalidateCache'
 
 export const LandingPage: GlobalConfig = {
   slug: 'landing-page',
   label: 'Landing Page',
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateLandingPage],
   },
   fields: [
     {

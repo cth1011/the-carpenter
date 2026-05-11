@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateCategory, revalidateCategoryDelete } from '../hooks/revalidateCache'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
@@ -7,6 +8,10 @@ export const Categories: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateCategory],
+    afterDelete: [revalidateCategoryDelete],
   },
   fields: [
     {

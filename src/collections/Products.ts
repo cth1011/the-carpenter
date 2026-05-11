@@ -1,5 +1,6 @@
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import type { CollectionConfig } from 'payload'
+import { revalidateProduct, revalidateProductDelete } from '../hooks/revalidateCache'
 
 export const Products: CollectionConfig = {
   slug: 'products',
@@ -19,6 +20,10 @@ export const Products: CollectionConfig = {
     create: ({ req }) => !!req.user,
     update: ({ req }) => !!req.user,
     delete: ({ req }) => !!req.user,
+  },
+  hooks: {
+    afterChange: [revalidateProduct],
+    afterDelete: [revalidateProductDelete],
   },
   fields: [
     {

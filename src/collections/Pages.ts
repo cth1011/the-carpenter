@@ -1,5 +1,6 @@
 import { Block, CollectionConfig } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { revalidatePage, revalidatePageDelete } from '../hooks/revalidateCache'
 
 const HeroBlock: Block = {
   slug: 'hero',
@@ -186,6 +187,10 @@ export const Pages: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidatePage],
+    afterDelete: [revalidatePageDelete],
   },
   fields: [
     {
