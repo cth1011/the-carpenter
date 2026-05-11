@@ -162,6 +162,7 @@ export default function QuotationPage() {
                         alt={item.product.name}
                         fill
                         className="object-cover"
+                        sizes="64px"
                       />
                     </div>
                     <div>

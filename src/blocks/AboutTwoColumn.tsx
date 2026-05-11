@@ -58,6 +58,7 @@ const AboutTwoColumn: React.FC<AboutTwoColumnProps> = ({
             alt={image?.alt || 'Image'}
             fill
             className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </div>

@@ -85,6 +85,7 @@ export default function TwoColumnContent({
               alt={imageAlt || 'Person on skateboard in a concrete bowl'}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           )}
         </motion.div>
