@@ -60,7 +60,7 @@ export const Footer: GlobalConfig = {
         {
           name: 'icon',
           type: 'select',
-          options: ['facebook', 'instagram', 'twitter'],
+          options: ['facebook', 'instagram', 'twitter', 'tiktok'],
           required: true,
         },
       ],

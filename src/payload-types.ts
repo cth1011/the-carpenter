@@ -733,7 +733,7 @@ export interface Footer {
   socialLinks?:
     | {
         href: string;
-        icon: 'facebook' | 'instagram' | 'twitter';
+        icon: 'facebook' | 'instagram' | 'twitter' | 'tiktok';
         id?: string | null;
       }[]
     | null;
