@@ -675,6 +675,7 @@ export interface LandingPage {
     title: string;
     subtitle: string;
     backgroundImage: number | Media;
+    showTopOverlay?: boolean | null;
     cta: {
       text: string;
       link: string;
@@ -759,6 +760,7 @@ export interface LandingPageSelect<T extends boolean = true> {
         title?: T;
         subtitle?: T;
         backgroundImage?: T;
+        showTopOverlay?: T;
         cta?:
           | T
           | {

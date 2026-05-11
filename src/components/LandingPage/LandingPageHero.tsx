@@ -27,7 +27,12 @@ export function LandingPageHero({ landingPage }: { landingPage: LandingPage }) {
           sizes="100vw"
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
+      {/* Top Overlay */}
+      {hero?.showTopOverlay && (
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-transparent h-1/2"></div>
+      )}
+      {/* Bottom Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
       <span className="absolute left-4 bottom-4 text-white text-sm uppercase tracking-widest">
         Timeless Design. Lasting Strength.
       </span>

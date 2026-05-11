@@ -32,6 +32,12 @@ export const LandingPage: GlobalConfig = {
           label: 'Background Image',
         },
         {
+          name: 'showTopOverlay',
+          type: 'checkbox',
+          label: 'Show Top Shadow Overlay',
+          defaultValue: false,
+        },
+        {
           name: 'cta',
           type: 'group',
           label: 'Call to Action',
