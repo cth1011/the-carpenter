@@ -9,7 +9,7 @@ import { Products } from './collections/Products'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { LandingPage, Header, Footer } from './globals'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { s3Storage } from '@payloadcms/storage-s3'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,12 +25,20 @@ export default buildConfig({
   collections: [Users, Posts, Products, Media, Pages, Categories],
   globals: [LandingPage, Header, Footer],
   plugins: [
-    vercelBlobStorage({
+    s3Storage({
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
-      clientUploads: true,
+      bucket: process.env.S3_BUCKET as string,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
+        },
+        region: 'auto',
+        endpoint: process.env.S3_ENDPOINT as string,
+        forcePathStyle: true,
+      },
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || '',
