@@ -107,4 +107,20 @@ describe('ProductDetailPage', () => {
       1, // quantity
     )
   })
+
+  it('should fallback to placeholder if image fails to load', async () => {
+    render(<ProductDetailPage />)
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'Test Product' })).toBeInTheDocument()
+    })
+
+    const images = screen.getAllByRole('img')
+    const mainImg = images[0]
+    
+    fireEvent.error(mainImg)
+    
+    expect(mainImg).toHaveAttribute('src')
+    const src = mainImg.getAttribute('src')
+    expect(src).toContain('placeholder-door.svg')
+  })
 })

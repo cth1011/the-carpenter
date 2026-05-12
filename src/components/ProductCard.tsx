@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import { FallbackImage } from '@/components/ui/FallbackImage'
 import Link from 'next/link'
 import { Product, Media } from '@/payload-types'
 
@@ -31,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Image Container */}
         <div className="relative aspect-[3/4] bg-white overflow-hidden">
           {/* Product Image */}
-          <Image
+          <FallbackImage
             src={imageUrl}
             alt={imageAlt}
             fill

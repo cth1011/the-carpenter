@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import ProductCard from './ProductCard'
 import { Product } from '@/payload-types'
@@ -39,6 +39,16 @@ describe('ProductCard', () => {
   it('should render the Quick View button', () => {
     render(<ProductCard product={mockProduct} />)
     expect(screen.getByText('Quick View')).toBeInTheDocument()
+  })
+
+  it('should fallback to placeholder if image fails to load', () => {
+    render(<ProductCard product={mockProduct} />)
+    const img = screen.getByRole('img')
+    fireEvent.error(img)
+    // Next.js Image component might prefix the URL or use a loader
+    expect(img).toHaveAttribute('src')
+    const src = img.getAttribute('src')
+    expect(src).toContain('placeholder-door.svg')
   })
 })
 

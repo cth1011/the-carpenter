@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { FallbackImage } from '@/components/ui/FallbackImage'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -152,7 +152,7 @@ export default function QuotationPage() {
                 >
                   <div className="flex items-center gap-4 mb-4 sm:mb-0">
                     <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
-                      <Image
+                      <FallbackImage
                         src={
                           (typeof item.product.productImages?.[0]?.image ===
                             'object' &&

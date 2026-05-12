@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import { useQuotationStore } from '@/store/quotation'
 import { Button } from '@/components/ui/button'
 import { Plus, Minus, TreeDeciduous, Ruler, Truck } from 'lucide-react'
-import Image from 'next/image'
+import { FallbackImage } from '@/components/ui/FallbackImage'
 import Link from 'next/link'
 import { Product } from '@/payload-types'
 import { cn } from '@/lib/utils'
@@ -123,7 +123,7 @@ export function ProductDetailClient({
           {/* Product Images */}
           <div className="w-full overflow-hidden">
             <div className="relative h-64 sm:h-96 lg:h-[500px] mb-4 w-full">
-              <Image
+              <FallbackImage
                 src={mainImage}
                 alt={imageAlt}
                 fill
@@ -147,7 +147,7 @@ export function ProductDetailClient({
                         : 'border-gray-200'
                     )}
                   >
-                    <Image
+                    <FallbackImage
                       src={
                         typeof image.image === 'object'
                           ? image.image.url || ''
