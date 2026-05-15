@@ -95,6 +95,50 @@ export const ClientManualView: React.FC = () => {
         </ul>
       </section>
 
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--theme-elevation-700)' }}>6. Architecture Overview</h2>
+        <p>Your website relies on a few different interconnected services to run smoothly. Here's a simple breakdown of how things work behind the scenes:</p>
+        <ul style={{ paddingLeft: '20px' }}>
+          <li><strong>Domain Name (Namecheap):</strong> This is your address (<code style={{ background: 'var(--theme-elevation-100)', padding: '2px 5px' }}>thecarpenter.com.ph</code>). It acts like the front door, pointing visitors to where your website lives.</li>
+          <li><strong>Hosting (Vercel):</strong> This is the engine that runs your website code and makes it visible on the internet. It takes the data from your database and images from storage, assembling them into the pages your customers see.</li>
+          <li><strong>Database (Neon):</strong> This is where all your text content, product details, categories, and settings are securely stored. Think of it as a giant spreadsheet that holds everything except pictures.</li>
+          <li><strong>Image Storage (Cloudflare):</strong> All the photos you upload are stored here. Cloudflare is optimized to deliver high-quality images quickly to users anywhere in the world.</li>
+        </ul>
+      </section>
+
+      <section style={{ marginBottom: '3rem', background: 'var(--theme-elevation-50)', padding: '20px', borderRadius: '8px' }}>
+        <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--theme-elevation-700)' }}>7. Troubleshooting Guide</h2>
+        <p>If something isn't working right, check these common solutions:</p>
+        <div style={{ marginTop: '15px' }}>
+          <strong>Changes aren't showing up on the live site:</strong>
+          <ul style={{ paddingLeft: '20px' }}>
+            <li>Did you click "Save Draft" instead of "Publish"? Check the document status in the top right.</li>
+            <li>Sometimes, it takes a minute or two for the hosting server (Vercel) to rebuild the page with your new content. Try refreshing your browser after 2-3 minutes.</li>
+          </ul>
+        </div>
+        <div style={{ marginTop: '15px' }}>
+          <strong>Images are loading slowly or failing to upload:</strong>
+          <ul style={{ paddingLeft: '20px' }}>
+            <li>Make sure the image file size is under 500KB.</li>
+            <li>Ensure the file type is a standard web format (like .jpg, .png, or .webp).</li>
+          </ul>
+        </div>
+        <div style={{ marginTop: '15px' }}>
+          <strong>Can't log into the Admin Panel:</strong>
+          <ul style={{ paddingLeft: '20px' }}>
+            <li>Double-check that you are using the correct email and password. Ensure caps-lock is off.</li>
+            <li>If you forgot your password, contact your technical administrator to have it reset.</li>
+          </ul>
+        </div>
+        <div style={{ marginTop: '15px' }}>
+          <strong>Website is completely down:</strong>
+          <ul style={{ paddingLeft: '20px' }}>
+            <li>Check your domain status on Namecheap to ensure the registration hasn't expired.</li>
+            <li>Contact support to verify if the hosting (Vercel) or database (Neon) is undergoing scheduled maintenance.</li>
+          </ul>
+        </div>
+      </section>
+
       <footer style={{ marginTop: '4rem', padding: '20px', borderTop: '1px solid var(--theme-elevation-150)', textAlign: 'center', fontSize: '0.9rem', opacity: 0.7 }}>
         Manual generated for The Carpenter.
       </footer>

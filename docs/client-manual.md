@@ -94,6 +94,25 @@ Your website relies on a few different interconnected services to run smoothly. 
 
 ---
 
+## 7. Troubleshooting Guide
+
+If something isn't working right, check these common solutions:
+
+*   **Changes aren't showing up on the live site:** 
+    *   Did you click "Save Draft" instead of "Publish"? Check the document status in the top right.
+    *   Sometimes, it takes a minute or two for the hosting server (Vercel) to rebuild the page with your new content. Try refreshing your browser after 2-3 minutes.
+*   **Images are loading slowly or failing to upload:**
+    *   Make sure the image file size is under 500KB. 
+    *   Ensure the file type is a standard web format (like `.jpg`, `.png`, or `.webp`).
+*   **Can't log into the Admin Panel:**
+    *   Double-check that you are using the correct email and password. Ensure caps-lock is off.
+    *   If you forgot your password, contact your technical administrator to have it reset.
+*   **Website is completely down:**
+    *   Check your domain status on Namecheap to ensure the registration hasn't expired.
+    *   Contact support to verify if the hosting (Vercel) or database (Neon) is undergoing scheduled maintenance.
+
+---
+
 ## Tips for Success
 *   **Save Draft:** Use this if you want to save your work without showing it to the public yet.
 *   **Live Preview:** Click the "Live Preview" button in the top right to see how your changes will look on the live site before you publish!
