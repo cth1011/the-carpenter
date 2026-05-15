@@ -1,6 +1,5 @@
 export * from './Categories'
 export * from './Media'
 export * from './Pages'
-export * from './Posts'
 export * from './Products'
 export * from './Users'

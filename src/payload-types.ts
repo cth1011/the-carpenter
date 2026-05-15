@@ -68,7 +68,6 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
-    posts: Post;
     products: Product;
     media: Media;
     pages: Page;
@@ -80,7 +79,6 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
@@ -130,6 +128,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Manage admin users who have access to this dashboard.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -154,16 +154,8 @@ export interface User {
   password?: string | null;
 }
 /**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
-  id: number;
-  title?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
+ * Manage your catalog of doors. Add new products, update images, and set available dimensions here.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "products".
  */
@@ -209,6 +201,8 @@ export interface Product {
   createdAt: string;
 }
 /**
+ * Upload and manage all images for your website. Remember to add descriptive Alt Text for each image.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
@@ -254,6 +248,8 @@ export interface Media {
   };
 }
 /**
+ * Organize your products into categories like "Entrance Doors" or "Internal Doors".
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
@@ -265,6 +261,8 @@ export interface Category {
   createdAt: string;
 }
 /**
+ * Edit the content blocks for your website pages (e.g., About Us, Contact).
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
@@ -362,10 +360,6 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: number | Post;
-      } | null)
-    | ({
         relationTo: 'products';
         value: number | Product;
       } | null)
@@ -444,15 +438,6 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
- */
-export interface PostsSelect<T extends boolean = true> {
-  title?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

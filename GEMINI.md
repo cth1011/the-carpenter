@@ -22,7 +22,8 @@ The project is a standard Next.js application with PayloadCMS integrated. Here a
 - `src/payload.config.ts`: The main configuration file for PayloadCMS. This is where you define collections, globals, and other CMS settings.
 - `src/collections/`: This directory contains the definitions for the PayloadCMS collections.
   - `src/collections/Users.ts`: Defines the `Users` collection for authentication and user management.
-  - `src/collections/Posts.ts`: A sample collection that can be used for blog posts or other content. This will likely be replaced with a `Products` or `Doors` collection.
+  - `src/collections/Products.ts`: Defines the `Products` collection for managing door items.
+
 - `src/app/(app)`: This directory contains the frontend of the e-commerce site.
   - `src/app/(app)/layout.tsx`: The main layout for the customer-facing website.
   - `src/app/(app)/page.tsx`: The homepage of the website.

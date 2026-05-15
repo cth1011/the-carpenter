@@ -6,6 +6,7 @@ export const Products: CollectionConfig = {
   slug: 'products',
   admin: {
     useAsTitle: 'name',
+    description: 'Manage your catalog of doors. Add new products, update images, and set available dimensions here.',
     defaultColumns: ['name', 'category', 'productType', 'updatedAt'],
     livePreview: {
       url: ({ data }) => {

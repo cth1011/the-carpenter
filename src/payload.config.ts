@@ -3,7 +3,6 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { Categories } from './collections/Categories'
-import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
 import { Products } from './collections/Products'
 import { Media } from './collections/Media'
@@ -21,8 +20,19 @@ export default buildConfig({
         url: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
         globals: ['landing-page', 'header', 'footer'],
       },
+      components: {
+        afterNavLinks: [
+          '@/components/admin/ClientManualNav#ClientManualNav',
+        ],
+        views: {
+          ClientManual: {
+            Component: '@/components/admin/ClientManualView#ClientManualView',
+            path: '/client-manual',
+          },
+        },
+      },
   },
-  collections: [Users, Posts, Products, Media, Pages, Categories],
+  collections: [Users, Products, Media, Pages, Categories],
   globals: [LandingPage, Header, Footer],
   plugins: [
     s3Storage({

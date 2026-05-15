@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  admin: {
+    description: 'Upload and manage all images for your website. Remember to add descriptive Alt Text for each image.',
+  },
   upload: {
     imageSizes: [
       {

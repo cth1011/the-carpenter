@@ -5,6 +5,7 @@ export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
     useAsTitle: 'name',
+    description: 'Organize your products into categories like "Entrance Doors" or "Internal Doors".',
   },
   access: {
     read: () => true,

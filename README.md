@@ -42,8 +42,9 @@ the-carpenter-payload/
 │   ├── collections/                  # CMS collections
 │   │   ├── Products.ts               # Product collection
 │   │   ├── Media.ts                  # Media collection
-│   │   ├── Posts.ts                  # Blog posts
-│   │   └── Users.ts                  # User management
+│   │   ├── Users.ts                  # User management
+│   │   ├── Categories.ts             # Category collection
+│   │   └── Pages.ts                  # Page collection
 │   ├── components/                   # React components
 │   │   ├── ui/                       # ShadCN UI components
 │   │   ├── Navigation.tsx            # Site navigation

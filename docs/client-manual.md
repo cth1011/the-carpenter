@@ -1,104 +1,102 @@
 # The Carpenter - Website Management Manual
 
-Welcome to your website management dashboard! This guide will walk you through how to add products, change text, and manage the general content of your website using the **Payload Content Management System (CMS)**.
+Welcome to your website management dashboard! This guide will walk you through how to manage your website using the **Payload Content Management System (CMS)**.
 
 ---
 
 ## 1. Getting Started
 
-To manage your website, you need to log in to the Admin Panel.
+To manage your website, log in to the Admin Panel.
 
 *   **Admin Panel URL:** `https://thecarpenter.com.ph/admin`
-*   **Username:** `[Your Email]`
-*   **Password:** `[Your Password]`
-
-[Screenshot: The Login Screen]
+*   **Credentials:** Provided separately by your administrator.
 
 Once logged in, you will see a sidebar on the left with different categories like **Collections** (Products, Pages, Media) and **Globals** (Header, Footer, Landing Page).
 
 ---
 
-## 2. Managing Products
+## 2. Managing Images & Media
+
+Images are the most important part of your website. Proper management ensures your site stays fast and remains accessible to everyone.
+
+### Why is "Alt Text" needed?
+When you upload an image, you will see a field for **Alt Text**. 
+1.  **Accessibility:** It describes the image for people who are visually impaired and use screen readers.
+2.  **SEO (Search Engines):** Google uses Alt Text to understand what is in your photos, helping your website appear in search results.
+
+**Tip for writing Alt Text:** Be descriptive but concise. Instead of "Image1", use "Solid Oak Entrance Door with glass panels."
+
+### How to Upload an Image
+1.  Go to **Media** in the left sidebar.
+2.  Click **Create New**.
+3.  Choose a file from your computer. 
+    *   *Note: To keep the site fast, try to use images under 500KB. Large files can make your site slow to load.*
+4.  Enter the **Alt Text** in the field provided.
+5.  Click **Publish**.
+
+---
+
+## 3. Managing Products
 
 This is where you add or update the doors and other products you sell.
 
 ### How to Add a New Product
-1.  Click on **Products** in the left sidebar under the "Collections" section.
+1.  Click on **Products** in the sidebar.
 2.  Click the **Create New** button in the top right.
-3.  **Name:** Enter the name of the door (e.g., "Solid Oak Entrance Door").
-4.  **Category:** Select the category it belongs to (e.g., "Entrance Doors"). *Note: If the category doesn't exist yet, see the "Advanced Topics" section.*
+3.  **Name:** Enter the name of the product (e.g., "Classic Mahogany Main Door").
+4.  **Category:** Select the category it belongs to.
 5.  **Product Images:** 
     *   Click **Add Image**.
-    *   Click **Upload New** to pick a file from your computer, or **Choose Existing** to pick one you've already uploaded.
-    *   You can add multiple images for each product.
+    *   You can **Upload New** or **Choose Existing** from your Media library.
+    *   The first image will be the primary photo shown in the catalog.
 6.  **Dimension Options:** 
-    *   In the "Dimensions" section, you can add multiple values for **Thickness**, **Width**, and **Height**. 
-    *   Click **Add** for each value (e.g., Thickness: "40mm", "44mm").
-7.  Click **Publish** in the top right to make the product live on your website.
-
-[Screenshot: The Product Edit Page highlighting Name, Category, and Dimensions]
+    *   Add available sizes for **Thickness**, **Width**, and **Height**. 
+    *   Click **Add** for each value (e.g., Width: "80cm", "90cm").
+7.  Click **Publish** to make the product live.
 
 ---
 
-## 3. Changing Website Text (Pages)
+## 4. Categories
 
-Your website is built using "Blocks." Think of blocks as Lego pieces that you can stack and reorder to build a page.
+Categories help customers find what they are looking for (e.g., "Entrance Doors", "Internal Doors").
 
-### How to Edit a Page (e.g., About Us)
-1.  Click on **Pages** in the left sidebar.
-2.  Select the page you want to edit (e.g., "About").
-3.  In the **Layout** section, you will see several blocks. You can click on them to expand and edit their content:
-    *   **Hero:** The big section at the top. Change the title and background image here.
-    *   **Two Column:** A section with text on one side and an image on the other. You can swap the image position (left or right).
-    *   **Features:** A list of items with icons (like Hammer, Truck, Ruler) and descriptions.
-    *   **Rich Text:** A standard text editor for longer paragraphs.
-    *   **FAQ:** Add questions and answers here.
-4.  To move a block, click and drag the handle on the left side of the block.
-5.  Click **Publish** to save your changes.
-
-[Screenshot: The Page editor showing different Blocks expanded]
-
----
-
-## 4. Managing General Website Settings (Globals)
-
-Some things appear on every page of your site, like the menu at the top or the contact info at the bottom.
-
-### Header (The Top Menu)
-1.  Click on **Header** under the "Globals" section in the sidebar.
-2.  **Logo Text:** Change the name that appears as your logo.
-3.  **Navigation Links:** Add or remove items from your top menu. Each link needs a "Text" (what the user sees) and a "Link" (where it goes, e.g., `/products`).
-
-### Footer (The Bottom of the Site)
-1.  Click on **Footer** under "Globals".
-2.  Here you can update your **Company Description**, **Social Media Links**, **Address**, and **Working Hours**.
-3.  **Contacts:** You can add multiple phone numbers or emails. If it is an email, make sure to check the **"Is Email"** box.
-
-### Landing Page (The Homepage)
-1.  Click on **Landing Page** under "Globals".
-2.  This allows you to change the main headline and the big background image on the homepage.
-3.  **Featured Products:** You can select specific products to highlight on the front page.
-
----
-
-## 5. Advanced Topics
-
-### Managing Categories
-If you need to create a new category for your products (e.g., "Internal Doors"):
-1.  Click **Categories** in the left sidebar.
+### Creating a New Category
+1.  Click **Categories** in the sidebar.
 2.  Click **Create New**.
-3.  Enter the name and a **Sort Order** number (lower numbers appear first).
+3.  **Title:** Give the category a name.
+4.  **Sort Order:** Use numbers to choose the order (e.g., "1" for the most important category).
+5.  Click **Publish**.
 
-### Media Library (Images)
-All images you upload are stored in the **Media** collection.
-*   To keep your site fast, please try to resize images before uploading (ideally under 500KB).
-*   Always give your images descriptive names before uploading for better SEO.
+---
+
+## 5. Changing Website Text (Pages & Globals)
+
+### Editing Pages (About, Contact, etc.)
+1.  Click on **Pages** and select the page you want to edit.
+2.  The page is made of **Blocks**. Expand any block to change its text or images.
+3.  You can reorder blocks by dragging the handle on their left side.
+
+### Global Settings (Header & Footer)
+*   **Header:** Change your logo name and manage the main menu links.
+*   **Footer:** Update your company description, contact details, and social media links.
+*   **Landing Page:** Change the main headline and the featured products on the homepage.
+
+---
+
+## 6. Architecture Overview
+
+Your website relies on a few different interconnected services to run smoothly. Here's a simple breakdown of how things work behind the scenes:
+
+*   **Domain Name (Namecheap):** This is your address (`thecarpenter.com.ph`). It acts like the front door, pointing visitors to where your website lives.
+*   **Hosting (Vercel):** This is the engine that runs your website code and makes it visible on the internet. It takes the data from your database and images from storage, assembling them into the pages your customers see.
+*   **Database (Neon):** This is where all your text content, product details, categories, and settings are securely stored. Think of it as a giant spreadsheet that holds everything except pictures.
+*   **Image Storage (Cloudflare):** All the photos you upload are stored here. Cloudflare is optimized to deliver high-quality images quickly to users anywhere in the world.
 
 ---
 
 ## Tips for Success
-*   **Drafts vs. Published:** If you aren't ready for your changes to be seen by the public, click **Save Draft**.
-*   **Live Preview:** Some pages have a "Live Preview" button in the top right. Click this to see what your changes will look like on the website before you hit Publish!
+*   **Save Draft:** Use this if you want to save your work without showing it to the public yet.
+*   **Live Preview:** Click the "Live Preview" button in the top right to see how your changes will look on the live site before you publish!
 
 ---
 

@@ -174,6 +174,7 @@ export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     useAsTitle: 'title',
+    description: 'Edit the content blocks for your website pages (e.g., About Us, Contact).',
     livePreview: {
       url: ({ data }) => {
         const baseUrl =
