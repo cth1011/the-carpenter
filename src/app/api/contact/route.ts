@@ -84,6 +84,7 @@ export async function POST(request: Request) {
     const internalInfo = await transporter.sendMail(internalMailOptions)
 
     // Send customer confirmation
+    /*
     const customerMailOptions = {
       from: `${process.env.EMAIL_FROM || 'noreply@example.com'}`,
       to: data.email,
@@ -92,6 +93,7 @@ export async function POST(request: Request) {
       html: getContactFormConfirmationHtml(data),
     }
     const customerInfo = await transporter.sendMail(customerMailOptions)
+    */
 
     return NextResponse.json(
       { message: 'Message sent successfully!' },

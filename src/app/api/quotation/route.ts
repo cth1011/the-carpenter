@@ -95,6 +95,7 @@ export async function POST(request: Request) {
     const internalInfo = await transporter.sendMail(mailOptions)
 
     // 5. Send the confirmation email to the customer
+    /*
     const customerEmailHtml = getCustomerConfirmationHtml(customerInfo, items)
     const customerEmailText = getCustomerConfirmationText(customerInfo, items)
 
@@ -107,6 +108,7 @@ export async function POST(request: Request) {
     }
 
     const customerInfoEmail = await transporter.sendMail(customerMailOptions)
+    */
 
     return NextResponse.json(
       { message: 'Quotation request sent successfully!' },

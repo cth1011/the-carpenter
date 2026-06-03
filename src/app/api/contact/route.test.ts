@@ -28,7 +28,7 @@ describe('POST /api/contact', () => {
     vi.stubEnv('EMAIL_FROM', 'noreply@company.com')
   })
 
-  it('should send two emails (internal and customer) on successful submission', async () => {
+  it('should send internal email on successful submission', async () => {
     const mockRequestData = {
       name: 'Jane Doe',
       email: 'jane.doe@customer.com',
@@ -49,20 +49,14 @@ describe('POST /api/contact', () => {
     const body = await response.json()
     expect(body.message).toBe('Message sent successfully!')
 
-    // 2. Check that sendMail was called twice
-    expect(sendMailMock).toHaveBeenCalledTimes(2)
+    // 2. Check that sendMail was called once (customer confirmation is disabled)
+    expect(sendMailMock).toHaveBeenCalledTimes(1)
 
     // 3. Inspect the internal email
     const internalEmail = sendMailMock.mock.calls[0][0]
     expect(internalEmail.to).toBe('test@internal.com')
     expect(internalEmail.subject).toContain('New Contact Form Submission: Question about products')
     expect(internalEmail.html).toContain('Hello, I have a question.')
-
-    // 4. Inspect the customer confirmation email
-    const customerEmail = sendMailMock.mock.calls[1][0]
-    expect(customerEmail.to).toBe('jane.doe@customer.com')
-    expect(customerEmail.subject).toContain('We have received your message')
-    expect(customerEmail.html).toContain('For your records, here is a copy of your message:')
   })
 
   it('should return 400 if required fields are missing', async () => {

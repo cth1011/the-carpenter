@@ -28,7 +28,7 @@ describe('POST /api/quotation', () => {
     vi.stubEnv('EMAIL_FROM', 'noreply@company.com')
   })
 
-  it('should send two emails (internal and customer) on successful submission', async () => {
+  it('should send internal email on successful submission', async () => {
     const mockRequestData = {
       customerInfo: {
         name: 'John Doe',
@@ -56,20 +56,14 @@ describe('POST /api/quotation', () => {
     const body = await response.json()
     expect(body.message).toBe('Quotation request sent successfully!')
 
-    // 2. Check that sendMail was called twice
-    expect(sendMailMock).toHaveBeenCalledTimes(2)
+    // 2. Check that sendMail was called once (customer confirmation is disabled)
+    expect(sendMailMock).toHaveBeenCalledTimes(1)
 
     // 3. Inspect the internal email
     const internalEmail = sendMailMock.mock.calls[0][0]
     expect(internalEmail.to).toBe('test@internal.com')
     expect(internalEmail.subject).toContain('New Quotation Request from John Doe')
     expect(internalEmail.html).toContain('Classic Oak Door')
-
-    // 4. Inspect the customer confirmation email
-    const customerEmail = sendMailMock.mock.calls[1][0]
-    expect(customerEmail.to).toBe('john.doe@customer.com')
-    expect(customerEmail.subject).toContain('We have received your quotation request')
-    expect(customerEmail.html).toContain('Classic Oak Door')
   })
 
   it('should return 400 if required data is missing', async () => {
