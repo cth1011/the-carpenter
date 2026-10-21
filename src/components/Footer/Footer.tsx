@@ -1,4 +1,5 @@
 import { getCachedPayload } from '@/payloadClient'
+import BirRegistrationSeal from './BirRegistrationSeal'
 import ContactItem from './ContactItem'
 import FooterNavSection from './FooterNavSection'
 import FooterSocialLink from './FooterSocialLink'
@@ -44,6 +45,9 @@ export default async function Footer() {
                   />
                 ))}
               </div>
+            </div>
+            <div className="mt-6">
+              <BirRegistrationSeal />
             </div>
           </div>
 
