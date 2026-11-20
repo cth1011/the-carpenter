@@ -36,6 +36,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/nodemailer": "^7.0.1",
     "@vercel/blob": "^2.3.3",
+    "@vercel/speed-insights": "^2.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
