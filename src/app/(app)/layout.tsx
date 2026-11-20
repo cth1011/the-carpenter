@@ -7,6 +7,7 @@ import React from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer/Footer'
 import { Toaster } from '@/components/ui/sonner'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'The Carpenter - Custom Doors & Woodwork',
@@ -42,6 +43,7 @@ const Layout = async ({ children }: LayoutProps) => {
           </main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   )
